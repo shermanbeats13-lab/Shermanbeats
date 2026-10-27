@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Song Request System</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF0080;
+            --secondary: #00F0FF;
+            --dark: #0A0A0F;
+            --light: #F5F5F7;
+            --accent: #FFD700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Syne', sans-serif;
+            background: linear-gradient(135deg, #0A0A0F, #1a0a1f, #0a1a1f);
+            color: var(--light);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+        
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .mode-button {
+            padding: 1.5rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: 2px solid var(--primary);
+            background: rgba(255, 0, 128, 0.1);
+            color: var(--light);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+        }
+        
+        .mode-button:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.4);
+        }
+        
+        .mode-button.active {
+            background: var(--primary);
+            box-shadow: 0 5px 20px rgba(255, 0, 128, 0.4);
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            margin-bottom: 2rem;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 0, 128, 0.3);
+            border-radius: 10px;
+            color: var(--light);
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .input-group input:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+        }
+        
+        .button {
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Syne', sans-serif;
+        }
+        
+        .button:hover {
+            background: #cc0066;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 0, 128, 0.4);
+        }
+        
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .button-secondary {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .button-secondary:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .song-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .song-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .song-item:hover {
+            transform: translateX(5px);
+            border-left-color: var(--secondary);
+        }
+        
+        .song-info {
+            flex: 1;
+        }
+        
+        .song-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        
+        .song-artist {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .vote-count {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-right: 1rem;
+        }
+        
+        .vote-button {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .vote-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(255, 0, 128, 0.5);
+        }
+        
+        .vote-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+        
+        .qr-container {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .qr-container canvas {
+            border: 5px solid var(--primary);
+            border-radius: 20px;
+            padding: 1rem;
+            background: white;
+        }
+        
+        .show-url {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        
+        .dj-dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .current-playing {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .current-playing h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .playing-song {
+            font-size: 3rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            margin: 1rem 0;
+        }
+        
+        .delete-button {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff4444;
+            color: #ff4444;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .delete-button:hover {
+            background: #ff4444;
+            color: white;
+        }
+        
+        .add-song-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .add-song-form input {
+            flex: 1;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 0, 128, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 128, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        
+        .stat-label {
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .mode-selector {
+                flex-direction: column;
+            }
+            
+            .dj-dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .add-song-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        // Mock Firebase - Replace with real Firebase in production
+        class MockFirebase {
+            constructor() {
+                this.data = JSON.parse(localStorage.getItem('djShows') || '{}');
+            }
+            
+            save() {
+                localStorage.setItem('djShows', JSON.stringify(this.data));
+            }
+            
+            createShow(djEmail, djName, songs) {
+                const showId = Math.random().toString(36).substr(2, 9);
+                this.data[showId] = {
+                    djEmail,
+                    djName,
+                    songs: songs.map((song, index) => ({
+                        ...song,
+                        id: index,
+                        votes: 0
+                    })),
+                    active: true,
+                    createdAt: new Date().toISOString()
+                };
+                this.save();
+                return showId;
+            }
+            
+            getShow(showId) {
+                return this.data[showId];
+            }
+            
+            updateShow(showId, data) {
+                this.data[showId] = { ...this.data[showId], ...data };
+                this.save();
+            }
+            
+            addVote(showId, songId) {
+                const show = this.data[showId];
+                if (show) {
+                    const song = show.songs.find(s => s.id === songId);
+                    if (song) {
+                        song.votes += 1;
+                        this.save();
+                    }
+                }
+            }
+            
+            addSong(showId, song) {
+                const show = this.data[showId];
+                if (show) {
+                    const newSong = {
+                        ...song,
+                        id: show.songs.length,
+                        votes: 0
+                    };
+                    show.songs.push(newSong);
+                    this.save();
+                }
+            }
+            
+            removeSong(showId, songId) {
+                const show = this.data[showId];
+                if (show) {
+                    show.songs = show.songs.filter(s => s.id !== songId);
+                    this.save();
+                }
+            }
+        }
+        
+        const firebase = new MockFirebase();
+        
+        function App() {
+            const [mode, setMode] = useState('home'); // home, dj-setup, guest-vote, dj-live
+            const [djEmail, setDjEmail] = useState('');
+            const [djName, setDjName] = useState('');
+            const [songInput, setSongInput] = useState('');
+            const [songs, setSongs] = useState([]);
+            const [currentShow, setCurrentShow] = useState(null);
+            const [showId, setShowId] = useState('');
+            const [votedSongs, setVotedSongs] = useState(new Set());
+            
+            const parseShowId = () => {
+                const params = new URLSearchParams(window.location.search);
+                return params.get('show');
+            };
+            
+            useEffect(() => {
+                const urlShowId = parseShowId();
+                if (urlShowId) {
+                    const show = firebase.getShow(urlShowId);
+                    if (show) {
+                        setCurrentShow(show);
+                        setShowId(urlShowId);
+                        setMode('guest-vote');
+                    }
+                }
+            }, []);
+            
+            const parseSongList = (input) => {
+                return input.split('\n')
+                    .filter(line => line.trim())
+                    .map(line => {
+                        const parts = line.split('-');
+                        if (parts.length >= 2) {
+                            return {
+                                title: parts[0].trim(),
+                                artist: parts.slice(1).join('-').trim()
+                            };
+                        }
+                        return { title: line.trim(), artist: 'Unknown Artist' };
+                    });
+            };
+            
+            const createShow = () => {
+                if (!djEmail || !djName || songs.length === 0) {
+                    alert('Please fill in all fields and add at least one song');
+                    return;
+                }
+                
+                const newShowId = firebase.createShow(djEmail, djName, songs);
+                setShowId(newShowId);
+                setCurrentShow(firebase.getShow(newShowId));
+                setMode('dj-live');
+            };
+            
+            const addSongToList = () => {
+                const parsedSongs = parseSongList(songInput);
+                setSongs([...songs, ...parsedSongs]);
+                setSongInput('');
+            };
+            
+            const removeSong = (index) => {
+                setSongs(songs.filter((_, i) => i !== index));
+            };
+            
+            const generateQRCode = () => {
+                const url = `${window.location.origin}${window.location.pathname}?show=${showId}`;
+                const canvas = document.getElementById('qr-code');
+                QRCode.toCanvas(canvas, url, {
+                    width: 300,
+                    margin: 2,
+                    color: {
+                        dark: '#0A0A0F',
+                        light: '#FFFFFF'
+                    }
+                });
+            };
+            
+            useEffect(() => {
+                if (mode === 'dj-live' && showId) {
+                    setTimeout(generateQRCode, 100);
+                }
+            }, [mode, showId]);
+            
+            const handleVote = (songId) => {
+                if (votedSongs.has(songId)) return;
+                
+                firebase.addVote(showId, songId);
+                setVotedSongs(new Set([...votedSongs, songId]));
+                setCurrentShow(firebase.getShow(showId));
+            };
+            
+            const addSongLive = () => {
+                const parsedSongs = parseSongList(songInput);
+                if (parsedSongs.length > 0) {
+                    parsedSongs.forEach(song => {
+                        firebase.addSong(showId, song);
+                    });
+                    setCurrentShow(firebase.getShow(showId));
+                    setSongInput('');
+                }
+            };
+            
+            const removeSongLive = (songId) => {
+                firebase.removeSong(showId, songId);
+                setCurrentShow(firebase.getShow(showId));
+            };
+            
+            const sortedSongs = currentShow ? 
+                [...currentShow.songs].sort((a, b) => b.votes - a.votes) : [];
+            
+            const totalVotes = currentShow ? 
+                currentShow.songs.reduce((sum, song) => sum + song.votes, 0) : 0;
+            
+            return (
+                <div className="app-container">
+                    <div className="header">
+                        <h1>DJ SONG REQUEST</h1>
+                        <p>Let your guests vote on what plays next</p>
+                    </div>
+                    
+                    {mode === 'home' && (
+                        <>
+                            <div className="mode-selector">
+                                <button 
+                                    className="mode-button"
+                                    onClick={() => setMode('dj-setup')}
+                                >
+                                    🎧 I'm a DJ - Create Show
+                                </button>
+                                <button 
+                                    className="mode-button"
+                                    onClick={() => {
+                                        const id = prompt('Enter show code:');
+                                        if (id) {
+                                            const show = firebase.getShow(id);
+                                            if (show) {
+                                                setShowId(id);
+                                                setCurrentShow(show);
+                                                setMode('guest-vote');
+                                            } else {
+                                                alert('Show not found');
+                                            }
+                                        }
+                                    }}
+                                >
+                                    🎵 I'm a Guest - Join Show
+                                </button>
+                            </div>
+                            
+                            <div className="card" style={{marginTop: '3rem'}}>
+                                <h2 style={{fontSize: '2rem', marginBottom: '1rem', color: 'var(--secondary)'}}>
+                                    How It Works
+                                </h2>
+                                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginTop: '2rem'}}>
+                                    <div>
+                                        <div style={{fontSize: '3rem', marginBottom: '1rem'}}>1️⃣</div>
+                                        <h3 style={{marginBottom: '0.5rem'}}>DJ Creates Show</h3>
+                                        <p style={{opacity: '0.8'}}>Set up your event with a custom song list</p>
+                                    </div>
+                                    <div>
+                                        <div style={{fontSize: '3rem', marginBottom: '1rem'}}>2️⃣</div>
+                                        <h3 style={{marginBottom: '0.5rem'}}>Share QR Code</h3>
+                                        <p style={{opacity: '0.8'}}>Display the QR code for guests to scan</p>
+                                    </div>
+                                    <div>
+                                        <div style={{fontSize: '3rem', marginBottom: '1rem'}}>3️⃣</div>
+                                        <h3 style={{marginBottom: '0.5rem'}}>Guests Vote</h3>
+                                        <p style={{opacity: '0.8'}}>Everyone votes on their favorite songs</p>
+                                    </div>
+                                    <div>
+                                        <div style={{fontSize: '3rem', marginBottom: '1rem'}}>4️⃣</div>
+                                        <h3 style={{marginBottom: '0.5rem'}}>Play Top Picks</h3>
+                                        <p style={{opacity: '0.8'}}>See live results and play what the crowd wants</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    )}
+                    
+                    {mode === 'dj-setup' && (
+                        <div className="card">
+                            <h2 style={{fontSize: '2rem', marginBottom: '2rem', color: 'var(--secondary)'}}>
+                                Create Your Show
+                            </h2>
+                            
+                            <div className="input-group">
+                                <label>DJ Email</label>
+                                <input 
+                                    type="email"
+                                    placeholder="your.email@example.com"
+                                    value={djEmail}
+                                    onChange={(e) => setDjEmail(e.target.value)}
+                                />
+                            </div>
+                            
+                            <div className="input-group">
+                                <label>DJ Name / Event Name</label>
+                                <input 
+                                    type="text"
+                                    placeholder="DJ Awesome's Wedding Show"
+                                    value={djName}
+                                    onChange={(e) => setDjName(e.target.value)}
+                                />
+                            </div>
+                            
+                            <div className="input-group">
+                                <label>Add Songs (one per line: Song Title - Artist Name)</label>
+                                <textarea 
+                                    rows="6"
+                                    placeholder="Uptown Funk - Bruno Mars&#10;Shape of You - Ed Sheeran&#10;Blinding Lights - The Weeknd"
+                                    value={songInput}
+                                    onChange={(e) => setSongInput(e.target.value)}
+                                />
+                            </div>
+                            
+                            <button className="button" onClick={addSongToList}>
+                                Add Songs to List
+                            </button>
+                            
+                            {songs.length > 0 && (
+                                <div style={{marginTop: '2rem'}}>
+                                    <h3 style={{marginBottom: '1rem', color: 'var(--accent)'}}>
+                                        Your Song List ({songs.length} songs)
+                                    </h3>
+                                    <div className="song-list">
+                                        {songs.map((song, index) => (
+                                            <div key={index} className="song-item">
+                                                <div className="song-info">
+                                                    <div className="song-title">{song.title}</div>
+                                                    <div className="song-artist">{song.artist}</div>
+                                                </div>
+                                                <button 
+                                                    className="delete-button"
+                                                    onClick={() => removeSong(index)}
+                                                >
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    
+                                    <button 
+                                        className="button"
+                                        style={{marginTop: '2rem', width: '100%', fontSize: '1.2rem', padding: '1.5rem'}}
+                                        onClick={createShow}
+                                    >
+                                        🚀 Launch Show
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                    
+                    {mode === 'dj-live' && currentShow && (
+                        <>
+                            <div className="stats">
+                                <div className="stat-card">
+                                    <div className="stat-number">{currentShow.songs.length}</div>
+                                    <div className="stat-label">Songs in Queue</div>
+                                </div>
+                                <div className="stat-card">
+                                    <div className="stat-number">{totalVotes}</div>
+                                    <div className="stat-label">Total Votes</div>
+                                </div>
+                                <div className="stat-card">
+                                    <div className="stat-number">
+                                        {sortedSongs[0]?.votes || 0}
+                                    </div>
+                                    <div className="stat-label">Top Song Votes</div>
+                                </div>
+                            </div>
+                            
+                            <div className="card">
+                                <h2 style={{fontSize: '2rem', marginBottom: '1rem', color: 'var(--secondary)'}}>
+                                    🎉 Show Active: {currentShow.djName}
+                                </h2>
+                                
+                                <div className="qr-container">
+                                    <p style={{fontSize: '1.2rem', marginBottom: '1rem'}}>
+                                        Share this QR code with your guests:
+                                    </p>
+                                    <canvas id="qr-code"></canvas>
+                                    <div className="show-url">
+                                        Show ID: <strong>{showId}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="card">
+                                <h3 style={{fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--accent)'}}>
+                                    Add More Songs
+                                </h3>
+                                <div className="add-song-form">
+                                    <textarea 
+                                        rows="3"
+                                        placeholder="Song Title - Artist Name&#10;(one per line)"
+                                        value={songInput}
+                                        onChange={(e) => setSongInput(e.target.value)}
+                                        style={{flex: 1}}
+                                    />
+                                    <button className="button" onClick={addSongLive}>
+                                        Add Songs
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div className="card">
+                                <h3 style={{fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--accent)'}}>
+                                    Live Results - Top Requested Songs
+                                </h3>
+                                <div className="song-list">
+                                    {sortedSongs.map((song) => (
+                                        <div key={song.id} className="song-item">
+                                            <div className="vote-count">{song.votes}</div>
+                                            <div className="song-info">
+                                                <div className="song-title">{song.title}</div>
+                                                <div className="song-artist">{song.artist}</div>
+                                            </div>
+                                            <button 
+                                                className="delete-button"
+                                                onClick={() => removeSongLive(song.id)}
+                                            >
+                                                Remove
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </>
+                    )}
+                    
+                    {mode === 'guest-vote' && currentShow && (
+                        <div className="card">
+                            <h2 style={{fontSize: '2.5rem', marginBottom: '1rem', textAlign: 'center'}}>
+                                🎵 {currentShow.djName}
+                            </h2>
+                            <p style={{textAlign: 'center', fontSize: '1.2rem', marginBottom: '2rem', opacity: '0.8'}}>
+                                Vote for your favorite songs!
+                            </p>
+                            
+                            <div className="song-list">
+                                {sortedSongs.map((song) => (
+                                    <div key={song.id} className="song-item">
+                                        <div className="song-info">
+                                            <div className="song-title">{song.title}</div>
+                                            <div className="song-artist">{song.artist}</div>
+                                        </div>
+                                        <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                                            <div className="vote-count">{song.votes}</div>
+                                            <button 
+                                                className="vote-button"
+                                                onClick={() => handleVote(song.id)}
+                                                disabled={votedSongs.has(song.id)}
+                                            >
+                                                {votedSongs.has(song.id) ? '✓ Voted' : '👍 Vote'}
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    
+                    {mode !== 'home' && (
+                        <div style={{textAlign: 'center', marginTop: '2rem'}}>
+                            <button 
+                                className="button button-secondary"
+                                onClick={() => {
+                                    setMode('home');
+                                    setCurrentShow(null);
+                                    setShowId('');
+                                    setVotedSongs(new Set());
+                                }}
+                            >
+                                ← Back to Home
+                            </button>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+        
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
+<script async src="/.netlify/scripts/ar" data-netlify-deploy-id="6ae0d3e72b1499c637530a0e" data-netlify-site-id="662c7b9b-aa5e-4aca-a733-7de6172d6528" data-agent-runner-id="6ae0d2177496d4494ae94c94"></script>
