@@ -289,52 +289,6 @@
 </footer>
 
 <script>
-  // Mix players: custom play buttons drive the real audio files
-  function fmt(s){
-    if(!isFinite(s)) return '–:––';
-    s = Math.floor(s);
-    return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
-  }
-  var mixes = Array.prototype.slice.call(document.querySelectorAll('.mix'));
-  mixes.forEach(function(card){
-    var audio = card.querySelector('audio');
-    var btn = card.querySelector('.play');
-    var wave = card.querySelector('.wave');
-    var bars = wave.querySelectorAll('i');
-    var dur = card.querySelector('.dur');
-    var label = btn.getAttribute('aria-label');
-
-    function setPlaying(on){
-      card.classList.toggle('playing', on);
-      btn.setAttribute('aria-label', on ? label.replace('Play', 'Pause') : label);
-    }
-    function progress(){
-      var pct = audio.duration ? audio.currentTime / audio.duration : 0;
-      bars.forEach(function(b, i){ b.classList.toggle('done', (i + 1) / bars.length <= pct); });
-      dur.textContent = audio.currentTime > 0 ? fmt(audio.currentTime) : fmt(audio.duration);
-    }
-
-    btn.addEventListener('click', function(){
-      if(audio.paused){
-        mixes.forEach(function(m){ var a = m.querySelector('audio'); if(a !== audio) a.pause(); });
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    });
-    wave.addEventListener('click', function(e){
-      if(!audio.duration) return;
-      var r = wave.getBoundingClientRect();
-      audio.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * audio.duration;
-      progress();
-    });
-    audio.addEventListener('play', function(){ setPlaying(true); });
-    audio.addEventListener('pause', function(){ setPlaying(false); });
-    audio.addEventListener('ended', function(){ setPlaying(false); audio.currentTime = 0; progress(); });
-    audio.addEventListener('loadedmetadata', progress);
-    audio.addEventListener('timeupdate', progress);
-  });
-
   // Enquiry form opens the visitor's email app addressed to Sherman Beats
   document.getElementById('cform').addEventListener('submit', function(e){
     e.preventDefault();
