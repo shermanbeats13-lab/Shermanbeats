@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>The Silent Hour at Cedar Ridge — Murder Mystery Date Night</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Special+Elite&display=swap" rel="stylesheet" />
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    navy: { 50:'#f0f3f8', 100:'#d6dde8', 200:'#a8b5cc', 300:'#7a8db0', 400:'#4c6594', 500:'#1e3d78', 600:'#17305f', 700:'#0f2347', 800:'#0b1a35', 900:'#0f172a', 950:'#080e1a' },
+                    forest: { 50:'#f0f5f2', 100:'#d0e0d5', 200:'#a1c1ab', 300:'#72a281', 400:'#438357', 500:'#1a5c32', 600:'#154a28', 700:'#10381e', 800:'#0d1f16', 900:'#091510' },
+                    amber: { 50:'#fff9eb', 100:'#fef3c7', 200:'#fde68a', 300:'#fcd34d', 400:'#fbbf24', 500:'#f59e0b', 600:'#d97706', 700:'#b45309', 800:'#92400e', 900:'#78350f' },
+                    cream: { 50:'#fffef9', 100:'#fef3c7', 200:'#fde9a0', 300:'#fcd97d', 400:'#f5e6c8', 500:'#e8d5a3' },
+                    parchment: { 50:'#fdfaf3', 100:'#f5eed8', 200:'#ede2c0', 300:'#e0d0a0', 400:'#d4be80' },
+                    rose: { 100:'#ffe4e6', 200:'#fecdd3', 300:'#fda4af', 400:'#fb7185', 500:'#f43f5e', 600:'#e11d48', 700:'#be123c', 800:'#9f1239' },
+                    rosegold: { 100:'#fdf2f0', 200:'#f5d5cc', 300:'#e8b4a8', 400:'#d4917f', 500:'#b8705c' }
+                },
+                fontFamily: {
+                    display: ['"Playfair Display"', 'serif'],
+                    sans: ['Lato', 'sans-serif'],
+                    mono: ['"Special Elite"', 'cursive']
+                }
+            }
+        }
+    };
+    </script>
+    <style>
+        :root {
+            --bg-deep: #0a0f1a;
+            --bg-navy: #0f172a;
+            --bg-card: #141e30;
+            --bg-card-hover: #1a2740;
+            --text-cream: #fef3c7;
+            --text-parchment: #f5eed8;
+            --amber-glow: #f59e0b;
+            --forest-dark: #0d1f16;
+            --forest-mid: #1a3a25;
+            --rose-gold: #d4917f;
+        }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg-deep); color: var(--text-cream); font-family: 'Lato', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .nav-tab { position: relative; transition: all 0.3s ease; }
+        .nav-tab::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 2px; background: #f59e0b; transition: all 0.3s ease; transform: translateX(-50%); }
+        .nav-tab.active::after, .nav-tab:hover::after { width: 80%; }
+        .nav-tab.active { color: #f59e0b; }
+        .glow-border { box-shadow: 0 0 15px rgba(245,158,11,0.1), inset 0 0 15px rgba(245,158,11,0.03); }
+        .glow-border-strong { box-shadow: 0 0 25px rgba(245,158,11,0.15), inset 0 0 20px rgba(245,158,11,0.05); }
+        .parchment-bg { background: linear-gradient(135deg, #f5eed8 0%, #ede2c0 40%, #e0d0a0 100%); color: #2c1810; }
+        .evidence-card { background: linear-gradient(145deg, #f5eed8 0%, #e8dcc0 50%, #ddd0aa 100%); color: #2c1810; position: relative; }
+        .evidence-card::before { content: ''; position: absolute; top: 0; right: 0; width: 30px; height: 30px; background: linear-gradient(135deg, transparent 50%, #c4b896 50%); }
+        .coffee-stain { position: relative; }
+        .coffee-stain::after { content: ''; position: absolute; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle, transparent 40%, rgba(139,90,43,0.08) 50%, rgba(139,90,43,0.12) 60%, transparent 70%); pointer-events: none; }
+        .stamp-evidence { display: inline-block; border: 3px solid #c0392b; color: #c0392b; padding: 2px 12px; font-family: 'Special Elite', cursive; font-size: 0.8rem; transform: rotate(-4deg); letter-spacing: 3px; opacity: 0.85; }
+        .legal-pad { background: repeating-linear-gradient(transparent, transparent 27px, rgba(100,140,180,0.2) 27px, rgba(100,140,180,0.2) 28px); background-color: #fef9e7; padding-left: 60px; position: relative; }
+        .legal-pad::before { content: ''; position: absolute; left: 50px; top: 0; bottom: 0; width: 2px; background: rgba(220,80,80,0.3); }
+        .legal-pad textarea { background: transparent; border: none; color: #2c1810; font-family: 'Lato', sans-serif; resize: vertical; width: 100%; outline: none; line-height: 28px; }
+        .wax-seal { width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #c0392b 0%, #922b21 40%, #7b241c 70%, #641e16 100%); box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 -3px 8px rgba(0,0,0,0.3), inset 0 3px 8px rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.5s ease; position: relative; }
+        .wax-seal::before { content: 'CR'; font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: rgba(255,255,255,0.25); }
+        .wax-seal.broken { animation: breakSeal 0.8s ease forwards; }
+        @keyframes breakSeal { 0% { transform: scale(1); opacity: 1; } 30% { transform: scale(1.2); } 60% { transform: scale(0.8) rotate(15deg); opacity: 0.6; } 100% { transform: scale(0) rotate(45deg); opacity: 0; } }
+        .candle-flicker { animation: flicker 3s ease-in-out infinite alternate; }
+        @keyframes flicker { 0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(245,158,11,0.5); } 25% { opacity: 0.9; text-shadow: 0 0 15px rgba(245,158,11,0.7); } 50% { opacity: 1; text-shadow: 0 0 8px rgba(245,158,11,0.4); } 75% { opacity: 0.95; text-shadow: 0 0 12px rgba(245,158,11,0.6); } }
+        .fade-in { animation: fadeIn 0.6s ease forwards; opacity: 0; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        .slide-up { animation: slideUp 0.5s ease forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        .romantic-glow { box-shadow: 0 0 30px rgba(212,145,127,0.15), 0 0 60px rgba(212,145,127,0.05); }
+        .menu-card { background: linear-gradient(135deg, #1a0a0a 0%, #2a1515 50%, #1a0a0a 100%); border: 1px solid rgba(212,145,127,0.3); }
+        .certificate { background: linear-gradient(135deg, #fdf8f0 0%, #f5eed8 50%, #ede2c0 100%); color: #2c1810; border: 3px double #b8860b; }
+        .hero-gradient { background: linear-gradient(180deg, #050a12 0%, #0a1628 20%, #0d1f16 40%, #0f172a 60%, #0a1628 80%, #050a12 100%); }
+        .hero-overlay { background: radial-gradient(ellipse at center, transparent 0%, rgba(5,10,18,0.4) 60%, rgba(5,10,18,0.9) 100%); }
+        .tree-silhouette { position: absolute; bottom: 0; left: 0; right: 0; height: 300px; background: linear-gradient(0deg, #050a12 0%, transparent 100%); }
+        .rain-line { position: absolute; width: 1px; background: linear-gradient(180deg, transparent, rgba(200,220,255,0.1), transparent); animation: rain linear infinite; }
+        @keyframes rain { 0% { transform: translateY(-100%); } 100% { transform: translateY(100vh); } }
+        .transcript-card { background: linear-gradient(135deg, #141e30 0%, #1a2740 100%); border-left: 4px solid #f59e0b; }
+        .score-card { background: linear-gradient(135deg, #141e30 0%, #1a2740 100%); }
+        .treasure-clue { background: linear-gradient(135deg, #2a1515 0%, #1a0a0a 100%); border: 1px solid rgba(212,145,127,0.2); }
+
+        /* Print Styles */
+        @media print {
+            .no-print { display: none !important; }
+            @page { size: 8.5in 11in; margin: 0.5in; }
+            html, body { margin: 0; padding: 0; background: white !important; color: #1a1a1a !important; }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                animation: none !important;
+            }
+            .tab-content { display: none !important; }
+            .tab-content.print-active { display: block !important; }
+            .hero-gradient, .tree-silhouette, .rain-line { display: none !important; }
+            .glow-border, .glow-border-strong { box-shadow: none !important; }
+            section { page-break-inside: avoid; }
+        }
+
+        /* Mobile nav */
+        @media (max-width: 1023px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-btn { display: flex; }
+        }
+        @media (min-width: 1024px) {
+            .desktop-nav { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+    </style>
+</head>
+<body data-id="0" class="min-h-screen">
+<!-- Sherman Beats Pack 1 access gate (preview build, not live) -->
+<div id="pack-gate" style="position:fixed;inset:0;z-index:9999;background:#111827;color:#f9fafb;display:flex;align-items:center;justify-content:center;padding:24px;font-family:system-ui,Arial,sans-serif;">
+  <div style="max-width:420px;width:100%;text-align:center;">
+    <p style="letter-spacing:.15em;text-transform:uppercase;font-size:12px;color:#f59e0b;margin:0 0 12px;">Sherman Beats</p>
+    <h1 style="font-size:24px;margin:0 0 8px;">Murder Mystery Date Night — Pack 1</h1>
+    <p style="color:#d1d5db;line-height:1.5;margin:0 0 20px;">Enter the access code from your purchase receipt to unlock this game.</p>
+    <form id="pack-gate-form" style="display:flex;flex-direction:column;gap:12px;">
+      <label for="pack-code" style="text-align:left;font-size:14px;">Access code</label>
+      <input id="pack-code" name="pack-code" type="text" autocomplete="off" spellcheck="false" placeholder="Paste your code here" style="padding:12px;border-radius:8px;border:1px solid #374151;background:#1f2937;color:#fff;font-size:16px;" />
+      <button type="submit" style="padding:12px;border-radius:8px;border:0;background:#f59e0b;color:#111827;font-weight:700;font-size:16px;cursor:pointer;">Unlock Pack 1</button>
+    </form>
+    <p id="pack-gate-error" role="alert" style="color:#fca5a5;min-height:20px;margin:16px 0 0;"></p>
+    <p style="color:#9ca3af;font-size:13px;line-height:1.5;">Preview build: this gate checks the code against Gumroad. No test code is built in — a real purchase code is needed to unlock it once license keys are enabled.</p>
+  </div>
+</div>
+<style>body.pack-gated{overflow:hidden}</style>
+
+    <app-icon data-id="1" hidden data-icon="search" data-palette="Earth"></app-icon>
+
+    <!-- Fixed Navigation -->
+    <nav data-id="2" id="main-nav-a1b2" class="no-print fixed top-0 left-0 right-0 z-50 border-b border-amber-500/20" style="background:rgba(10,15,26,0.95); backdrop-filter:blur(12px);">
+        <div data-id="3" class="max-w-7xl mx-auto px-4 lg:px-6">
+            <div data-id="4" class="flex items-center justify-between" style="min-height:56px;">
+                <!-- Logo -->
+                <div data-id="5" class="flex items-center gap-2 shrink-0">
+                    <span data-id="6" class="text-amber-500 candle-flicker text-lg">🕯️</span>
+                    <span data-id="7" class="font-display text-sm lg:text-base font-semibold text-amber-100 hidden sm:inline">Cedar Ridge</span>
+                </div>
+                <!-- Desktop Nav Tabs -->
+                <div data-id="8" class="desktop-nav items-center gap-1">
+                    <button data-id="9" class="nav-tab active px-3 py-2 text-xs font-medium tracking-wide text-cream-100 hover:text-amber-400 transition-colors whitespace-nowrap" data-tab="host-guide">Host Guide</button>
+                    <button data-id="10" class="nav-tab px-3 py-2 text-xs font-medium tracking-wide text-cream-100/70 hover:text-amber-400 transition-colors whitespace-nowrap" data-tab="story">Story & Characters</button>
+                    <button data-id="11" class="nav-tab px-3 py-2 text-xs font-medium tracking-wide text-cream-100/70 hover:text-amber-400 transition-colors whitespace-nowrap" data-tab="evidence">Evidence Pack</button>
+                    <button data-id="12" class="nav-tab px-3 py-2 text-xs font-medium tracking-wide text-cream-100/70 hover:text-amber-400 transition-colors whitespace-nowrap" data-tab="witnesses">Witness Scripts</button>
+                    <button data-id="13" class="nav-tab px-3 py-2 text-xs font-medium tracking-wide text-cream-100/70 hover:text-amber-400 transition-colors whitespace-nowrap" data-tab="worksheet">Worksheet</button>
+                    <button data-id="14" class="nav-tab px-3 py-2 text-xs font-medium tracking-wide text-cream-100/70 hover:text-amber-400 transition-colors whitespace-nowrap" data-tab="romantic">Romantic Add-Ons</button>
+                    <button data-id="15" class="nav-tab px-3 py-2 text-xs font-medium tracking-wide text-cream-100/70 hover:text-amber-400 transition-colors whitespace-nowrap" data-tab="reveal">The Reveal</button>
+                </div>
+                <!-- Print Button -->
+                <button data-id="16" id="print-btn-x3y4" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-cream-100/70 hover:text-amber-400 transition-colors border border-amber-500/20 rounded-lg hover:border-amber-500/40" title="Print current section">
+                    <i data-id="17" data-lucide="printer" class="w-3.5 h-3.5"></i>
+                    <span data-id="18">Print</span>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button data-id="19" id="mobile-menu-open-z9w8" class="mobile-menu-btn items-center justify-center p-2 text-cream-100/70 hover:text-amber-400 lg:hidden">
+                    <i data-id="20" data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div data-id="21" id="mobile-menu-v7u6" class="no-print hidden fixed inset-0 z-[60] flex flex-col" style="background:rgba(10,15,26,0.98); backdrop-filter:blur(16px);">
+        <div data-id="22" class="flex items-center justify-between px-5 py-4 border-b border-amber-500/20">
+            <span data-id="23" class="font-display text-lg font-semibold text-amber-100">Cedar Ridge</span>
+            <button data-id="24" id="mobile-menu-close-t5s4" class="p-2 text-cream-100/70 hover:text-amber-400">
+                <i data-id="25" data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <div data-id="26" class="flex flex-col gap-1 p-5 overflow-y-auto">
+            <button data-id="27" class="mobile-nav-tab text-left px-4 py-3 rounded-xl text-base font-medium text-cream-100/80 hover:bg-amber-500/10 hover:text-amber-400 transition-colors" data-tab="host-guide">🕯️ Host Guide</button>
+            <button data-id="28" class="mobile-nav-tab text-left px-4 py-3 rounded-xl text-base font-medium text-cream-100/80 hover:bg-amber-500/10 hover:text-amber-400 transition-colors" data-tab="story">📖 Story & Characters</button>
+            <button data-id="29" class="mobile-nav-tab text-left px-4 py-3 rounded-xl text-base font-medium text-cream-100/80 hover:bg-amber-500/10 hover:text-amber-400 transition-colors" data-tab="evidence">📁 Evidence Pack</button>
+            <button data-id="30" class="mobile-nav-tab text-left px-4 py-3 rounded-xl text-base font-medium text-cream-100/80 hover:bg-amber-500/10 hover:text-amber-400 transition-colors" data-tab="witnesses">🎬 Witness Scripts</button>
+            <button data-id="31" class="mobile-nav-tab text-left px-4 py-3 rounded-xl text-base font-medium text-cream-100/80 hover:bg-amber-500/10 hover:text-amber-400 transition-colors" data-tab="worksheet">📝 Investigation Worksheet</button>
+            <button data-id="32" class="mobile-nav-tab text-left px-4 py-3 rounded-xl text-base font-medium text-cream-100/80 hover:bg-amber-500/10 hover:text-amber-400 transition-colors" data-tab="romantic">💌 Romantic Add-Ons</button>
+            <button data-id="33" class="mobile-nav-tab text-left px-4 py-3 rounded-xl text-base font-medium text-cream-100/80 hover:bg-amber-500/10 hover:text-amber-400 transition-colors" data-tab="reveal">🔮 The Reveal</button>
+            <hr data-id="34" class="border-amber-500/20 my-3" />
+            <button data-id="35" id="mobile-print-btn-r3q2" class="text-left px-4 py-3 rounded-xl text-base font-medium text-cream-100/80 hover:bg-amber-500/10 hover:text-amber-400 transition-colors">🖨️ Print Section</button>
+        </div>
+    </div>
+
+    <main data-id="36">
+        <!-- HERO SECTION -->
+        <section data-id="37" id="hero-section-k1j2" class="no-print relative min-h-screen flex flex-col items-center justify-center overflow-hidden hero-gradient">
+            <!-- Rain Effect -->
+            <div data-id="38" class="absolute inset-0 overflow-hidden pointer-events-none" id="rain-container-m3n4"></div>
+            <!-- Fog/atmosphere -->
+            <div data-id="39" class="absolute inset-0 hero-overlay pointer-events-none"></div>
+            <!-- Tree silhouettes -->
+            <div data-id="40" class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:40%;">
+                <svg data-id="41" viewBox="0 0 1200 400" class="w-full h-full opacity-30" preserveAspectRatio="xMidYMax slice">
+                    <path data-id="42" d="M0,400 L0,250 L30,280 L50,180 L70,260 L90,150 L110,240 L130,130 L150,220 L170,280 L200,160 L220,250 L250,120 L270,230 L300,180 L320,260 L350,100 L370,200 L400,150 L420,250 L450,130 L470,220 L500,170 L520,260 L550,110 L570,200 L600,140 L630,230 L650,160 L680,250 L700,120 L730,210 L750,170 L780,260 L800,130 L830,220 L850,160 L880,250 L900,100 L930,200 L950,150 L980,240 L1000,170 L1030,260 L1050,130 L1080,220 L1100,180 L1130,260 L1150,140 L1180,230 L1200,200 L1200,400 Z" fill="#040810"/>
+                </svg>
+            </div>
+            <!-- Content -->
+            <div data-id="43" class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+                <p data-id="44" class="font-mono text-amber-500/60 text-xs tracking-[0.3em] uppercase mb-6 slide-up">A Murder Mystery Experience for Two</p>
+                <h1 data-id="45" class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-cream-100 leading-tight mb-4 slide-up" style="animation-delay:0.1s; text-shadow: 0 0 40px rgba(245,158,11,0.15);">
+                    The Silent Hour<br data-id="46" /><span data-id="47" class="text-amber-500 italic">at Cedar Ridge</span>
+                </h1>
+                <div data-id="48" class="w-24 h-px bg-gradient-to-r from-transparent via-amber-500/60 to-transparent mx-auto my-6 slide-up" style="animation-delay:0.2s;"></div>
+                <p data-id="49" class="font-sans text-cream-100/60 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-3 slide-up" style="animation-delay:0.3s;">
+                    A locked study. A dead painter. Four suspects with secrets.
+                </p>
+                <p data-id="50" class="font-sans text-cream-100/40 text-sm mb-10 slide-up" style="animation-delay:0.35s;">
+                    Set in a remote lodge above Shawnigan Lake, BC — on a night much like this one.
+                </p>
+                <button data-id="51" id="begin-btn-p5o6" class="candle-flicker inline-flex items-center gap-3 px-8 py-4 rounded-xl font-display text-lg font-semibold transition-all duration-300 slide-up" style="animation-delay:0.5s; background: linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #b45309 100%); color: #fffef9; box-shadow: 0 0 30px rgba(245,158,11,0.3);">
+                    🕯️ Begin the Evening
+                </button>
+            </div>
+            <!-- Scroll indicator -->
+            <div data-id="52" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-cream-100/20 animate-bounce">
+                <i data-id="53" data-lucide="chevrons-down" class="w-6 h-6"></i>
+            </div>
+        </section>
+
+        <!-- TAB 1: HOST GUIDE -->
+        <section data-id="54" id="host-guide" class="tab-content active min-h-screen pt-20 pb-16 px-4 sm:px-6">
+            <div data-id="55" class="max-w-4xl mx-auto">
+                <div data-id="56" class="text-center mb-12 fade-in">
+                    <p data-id="57" class="font-mono text-amber-500/60 text-xs tracking-[0.3em] uppercase mb-3">Tab 1</p>
+                    <h2 data-id="58" class="font-display text-3xl sm:text-4xl font-bold text-cream-100 mb-3">How to Run Your Mystery Evening</h2>
+                    <div data-id="59" class="w-16 h-px bg-amber-500/40 mx-auto"></div>
+                </div>
+
+                <!-- Setting the Mood -->
+                <div data-id="60" class="rounded-2xl p-6 sm:p-8 mb-8 glow-border" style="background: linear-gradient(135deg, #141e30 0%, #1a2740 100%);">
+                    <h3 data-id="61" class="font-display text-xl sm:text-2xl font-semibold text-amber-400 mb-6 flex items-center gap-3">
+                        <span data-id="62" class="text-2xl">🕯️</span> Setting the Mood <span data-id="63" class="text-cream-100/40 text-sm font-sans font-normal italic">— before guests arrive</span>
+                    </h3>
+                    <ul data-id="64" class="space-y-4 text-cream-100/80 font-sans text-sm sm:text-base leading-relaxed">
+                        <li data-id="65" class="flex gap-3"><span data-id="66" class="text-amber-500 mt-0.5 shrink-0">•</span><span data-id="67">Dim the lights and light candles (or use warm fairy lights). No overhead lighting during the mystery.</span></li>
+                        <li data-id="68" class="flex gap-3"><span data-id="69" class="text-amber-500 mt-0.5 shrink-0">•</span><span data-id="70">Play an ambient playlist: <em data-id="71" class="text-amber-300/80">"Rainy evening jazz"</em> or <em data-id="72" class="text-amber-300/80">"Dark academia study music"</em> on Spotify.</span></li>
+                        <li data-id="73" class="flex gap-3"><span data-id="74" class="text-amber-500 mt-0.5 shrink-0">•</span><span data-id="75">Set out wine, charcuterie, hot cocoa — whatever feels cozy and indulgent.</span></li>
+                        <li data-id="76" class="flex gap-3"><span data-id="77" class="text-amber-500 mt-0.5 shrink-0">•</span><span data-id="78">Print the <strong data-id="79" class="text-cream-100">Evidence Pack</strong> and place items in a manila envelope labeled <em data-id="80" class="text-amber-300/80">"CEDAR RIDGE — RESTRICTED FILES"</em></span></li>
+                        <li data-id="81" class="flex gap-3"><span data-id="82" class="text-amber-500 mt-0.5 shrink-0">•</span><span data-id="83">Print the <strong data-id="84" class="text-cream-100">Investigation Worksheet</strong> for both players.</span></li>
+                        <li data-id="85" class="flex gap-3"><span data-id="86" class="text-amber-500 mt-0.5 shrink-0">•</span><span data-id="87"><em data-id="88" class="text-cream-100/50">Optional:</em> Write each character name on a card and place face-down — reveal when the game begins.</span></li>
+                    </ul>
+                </div>
+
+                <!-- Flow of the Evening -->
+                <div data-id="89" class="rounded-2xl p-6 sm:p-8 mb-8 glow-border" style="background: linear-gradient(135deg, #141e30 0%, #1a2740 100%);">
+                    <h3 data-id="90" class="font-display text-xl sm:text-2xl font-semibold text-amber-400 mb-2 flex items-center gap-3">
+                        <span data-id="91" class="text-2xl">🌙</span> Flow of the Evening
+                    </h3>
+                    <p data-id="92" class="text-cream-100/40 text-xs font-mono tracking-wider mb-6">ESTIMATED: 2–2.5 HOURS</p>
+                    <div data-id="93" class="space-y-4">
+                        <div data-id="94" class="flex gap-4 items-start p-4 rounded-xl" style="background:rgba(245,158,11,0.05);">
+                            <span data-id="95" class="text-2xl shrink-0">🍷</span>
+                            <div data-id="96">
+                                <p data-id="97" class="font-semibold text-cream-100 text-sm sm:text-base">Step 1 — Open with Drinks <span data-id="98" class="text-cream-100/40 font-normal">(15 min)</span></p>
+                                <p data-id="99" class="text-cream-100/60 text-sm mt-1">Read "The Setup" together aloud from the Story & Characters tab.</p>
+                            </div>
+                        </div>
+                        <div data-id="100" class="flex gap-4 items-start p-4 rounded-xl" style="background:rgba(245,158,11,0.05);">
+                            <span data-id="101" class="text-2xl shrink-0">🔍</span>
+                            <div data-id="102">
+                                <p data-id="103" class="font-semibold text-cream-100 text-sm sm:text-base">Step 2 — Study the Characters <span data-id="104" class="text-cream-100/40 font-normal">(10 min)</span></p>
+                                <p data-id="105" class="text-cream-100/60 text-sm mt-1">Read through all four suspect profiles together. Note first impressions.</p>
+                            </div>
+                        </div>
+                        <div data-id="106" class="flex gap-4 items-start p-4 rounded-xl" style="background:rgba(245,158,11,0.05);">
+                            <span data-id="107" class="text-2xl shrink-0">📁</span>
+                            <div data-id="108">
+                                <p data-id="109" class="font-semibold text-cream-100 text-sm sm:text-base">Step 3 — Open the Evidence Pack <span data-id="110" class="text-cream-100/40 font-normal">(30 min)</span></p>
+                                <p data-id="111" class="text-cream-100/60 text-sm mt-1">Review each piece carefully. Discuss theories as you go.</p>
+                            </div>
+                        </div>
+                        <div data-id="112" class="flex gap-4 items-start p-4 rounded-xl" style="background:rgba(245,158,11,0.05);">
+                            <span data-id="113" class="text-2xl shrink-0">🎬</span>
+                            <div data-id="114">
+                                <p data-id="115" class="font-semibold text-cream-100 text-sm sm:text-base">Step 4 — Witness Interviews <span data-id="116" class="text-cream-100/40 font-normal">(30 min)</span></p>
+                                <p data-id="117" class="text-cream-100/60 text-sm mt-1">One person plays Detective, the other reads the witness role. Switch for each interview.</p>
+                            </div>
+                        </div>
+                        <div data-id="118" class="flex gap-4 items-start p-4 rounded-xl" style="background:rgba(245,158,11,0.05);">
+                            <span data-id="119" class="text-2xl shrink-0">📝</span>
+                            <div data-id="120">
+                                <p data-id="121" class="font-semibold text-cream-100 text-sm sm:text-base">Step 5 — Investigation Worksheet <span data-id="122" class="text-cream-100/40 font-normal">(15 min)</span></p>
+                                <p data-id="123" class="text-cream-100/60 text-sm mt-1">Complete the case notes together. Build your theory.</p>
+                            </div>
+                        </div>
+                        <div data-id="124" class="flex gap-4 items-start p-4 rounded-xl" style="background:rgba(212,145,127,0.08); border:1px solid rgba(212,145,127,0.15);">
+                            <span data-id="125" class="text-2xl shrink-0">🤫</span>
+                            <div data-id="126">
+                                <p data-id="127" class="font-semibold text-cream-100 text-sm sm:text-base">Step 6 — The Accusation</p>
+                                <p data-id="128" class="text-cream-100/60 text-sm mt-1">Whisper your final accusation to each other simultaneously — then click <strong data-id="129" class="text-amber-400">"The Reveal"</strong>. Dramatic!</p>
+                            </div>
+                        </div>
+                        <div data-id="130" class="flex gap-4 items-start p-4 rounded-xl" style="background:rgba(212,145,127,0.08); border:1px solid rgba(212,145,127,0.15);">
+                            <span data-id="131" class="text-2xl shrink-0">💌</span>
+                            <div data-id="132">
+                                <p data-id="133" class="font-semibold text-cream-100 text-sm sm:text-base">Step 7 — Romantic Add-Ons</p>
+                                <p data-id="134" class="text-cream-100/60 text-sm mt-1">Enjoy the evening's close with love notes, awards, and a cozy dessert.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Host Tips -->
+                <div data-id="135" class="rounded-2xl p-6 sm:p-8 glow-border" style="background: linear-gradient(135deg, #0d1f16 0%, #1a3a25 100%); border: 1px solid rgba(26,92,50,0.3);">
+                    <h3 data-id="136" class="font-display text-xl sm:text-2xl font-semibold text-amber-400 mb-5 flex items-center gap-3">
+                        <span data-id="137" class="text-2xl">💡</span> Host Tips
+                    </h3>
+                    <ul data-id="138" class="space-y-3 text-cream-100/80 font-sans text-sm sm:text-base leading-relaxed">
+                        <li data-id="139" class="flex gap-3"><i data-id="140" data-lucide="message-circle" class="w-4 h-4 text-amber-500/60 mt-1 shrink-0"></i><span data-id="141">Stay in the mood — speak in hushed, conspiratorial tones throughout.</span></li>
+                        <li data-id="142" class="flex gap-3"><i data-id="143" data-lucide="award" class="w-4 h-4 text-amber-500/60 mt-1 shrink-0"></i><span data-id="144">Award a <strong data-id="145" class="text-cream-100">"Detective of the Evening"</strong> title to whoever got closest to the truth.</span></li>
+                        <li data-id="146" class="flex gap-3"><i data-id="147" data-lucide="sparkles" class="w-4 h-4 text-amber-500/60 mt-1 shrink-0"></i><span data-id="148">The mystery is designed so both players can reach different conclusions — that's intentional and makes the reveal more fun!</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: STORY & CHARACTERS -->
+        <section data-id="149" id="story" class="tab-content min-h-screen pt-20 pb-16 px-4 sm:px-6">
+            <div data-id="150" class="max-w-4xl mx-auto">
+                <div data-id="151" class="text-center mb-12">
+                    <p data-id="152" class="font-mono text-amber-500/60 text-xs tracking-[0.3em] uppercase mb-3">Tab 2</p>
+                    <h2 data-id="153" class="font-display text-3xl sm:text-4xl font-bold text-cream-100 mb-3">The Silent Hour at Cedar Ridge</h2>
+                    <div data-id="154" class="w-16 h-px bg-amber-500/40 mx-auto"></div>
+                </div>
+
+                <!-- The Premise -->
+                <div data-id="155" class="parchment-bg rounded-2xl p-6 sm:p-8 mb-8 relative overflow-hidden" style="box-shadow: 0 8px 30px rgba(0,0,0,0.4);">
+                    <div data-id="156" class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-700/30 via-amber-600/50 to-amber-700/30"></div>
+                    <h3 data-id="157" class="font-display text-xl sm:text-2xl font-bold mb-5 text-amber-900 flex items-center gap-2">
+                        <i data-id="158" data-lucide="book-open" class="w-5 h-5"></i> The Premise
+                    </h3>
+                    <div data-id="159" class="font-sans text-sm sm:text-base leading-relaxed space-y-4" style="color:#3d2a1a;">
+                        <p data-id="160">On the stormy night of October 15th, renowned landscape painter <strong data-id="161">Dominic Frey</strong> was found dead in the locked study of Cedar Ridge Lodge — a remote lakeside retreat nestled in the forests above Shawnigan Lake, BC.</p>
+                        <p data-id="162">The cause: a single blow to the back of the head. The study was locked from the inside. The phone lines were cut. And the four guests staying at the lodge that weekend each had something to hide.</p>
+                        <p data-id="163">It's been 48 hours since the body was found. Local detective work has stalled. <strong data-id="164">YOU</strong> have been called in to review the case files and interview the witnesses.</p>
+                        <p data-id="165" class="font-display text-lg font-semibold text-center pt-2" style="color:#78350f;">One of the four people at Cedar Ridge that night is a killer.</p>
+                    </div>
+                </div>
+
+                <!-- The Victim -->
+                <div data-id="166" class="rounded-2xl p-6 sm:p-8 mb-8 glow-border-strong relative" style="background: linear-gradient(135deg, #1a0a0a 0%, #2a1515 50%, #1a0a0a 100%); border: 1px solid rgba(200,50,50,0.2);">
+                    <div data-id="167" class="absolute top-4 right-4">
+                        <span data-id="168" class="font-mono text-xs px-2 py-1 rounded" style="background:rgba(200,50,50,0.15); color:#fb7185;">DECEASED</span>
+                    </div>
+                    <h3 data-id="169" class="font-display text-xl sm:text-2xl font-semibold text-cream-100 mb-5">The Victim</h3>
+                    <div data-id="170" class="grid sm:grid-cols-[auto_1fr] gap-6">
+                        <div data-id="171" class="w-20 h-20 rounded-full flex items-center justify-center shrink-0 mx-auto sm:mx-0" style="background: linear-gradient(135deg, #2a1a10, #3d2a1a); border: 2px solid rgba(245,158,11,0.3);">
+                            <i data-id="172" data-lucide="palette" class="w-8 h-8 text-amber-500/60"></i>
+                        </div>
+                        <div data-id="173">
+                            <h4 data-id="174" class="font-display text-lg font-bold text-cream-100">Dominic Frey, <span data-id="175" class="text-cream-100/50 font-normal">52</span></h4>
+                            <p data-id="176" class="text-amber-400/80 text-sm font-medium mb-3">Celebrated but controversial landscape painter; recently turned to writing a tell-all memoir</p>
+                            <div data-id="177" class="space-y-2 text-cream-100/70 text-sm">
+                                <p data-id="178"><strong data-id="179" class="text-cream-100/90">Known for:</strong> Charisma, manipulation, and knowing everyone's secrets</p>
+                                <p data-id="180"><strong data-id="181" class="text-cream-100/90">Found:</strong> Locked study, 11:47 PM — blunt force trauma</p>
+                                <p data-id="182"><strong data-id="183" class="text-cream-100/90">Discovery:</strong> The locked door was broken down the following morning by lodge owner Talia Rowan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Suspects Header -->
+                <div data-id="184" class="text-center mb-8">
+                    <h3 data-id="185" class="font-display text-2xl sm:text-3xl font-bold text-amber-400 mb-2">The Suspects</h3>
+                    <p data-id="186" class="text-cream-100/40 text-sm font-sans">Four guests. Four secrets. One killer.</p>
+                </div>
+
+                <!-- Suspect Cards -->
+                <div data-id="187" class="grid md:grid-cols-2 gap-6 mb-8">
+                    <!-- Elena Marrow -->
+                    <div data-id="188" class="rounded-2xl p-6 glow-border" style="background: linear-gradient(135deg, #0d1f16 0%, #1a3a25 100%); border: 1px solid rgba(26,92,50,0.3);">
+                        <div data-id="189" class="flex items-center gap-3 mb-4">
+                            <div data-id="190" class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3);">
+                                <span data-id="191" class="text-xl">🕵️</span>
+                            </div>
+                            <div data-id="192">
+                                <h4 data-id="193" class="font-display text-lg font-bold text-cream-100">Elena Marrow, <span data-id="194" class="text-cream-100/50 font-normal">38</span></h4>
+                                <p data-id="195" class="text-amber-400 text-xs font-mono tracking-wider">THE ARCHIVIST</p>
+                            </div>
+                        </div>
+                        <div data-id="196" class="space-y-3 text-cream-100/70 text-sm leading-relaxed">
+                            <p data-id="197"><strong data-id="198" class="text-amber-300/80">Background:</strong> Dominic's former research assistant and rumored long-term affair partner. Arrived under the pretense of a "professional reconciliation" — she claimed Dominic had stolen research from her that formed the backbone of his most famous work, "The Crow Shore Series."</p>
+                            <p data-id="199"><strong data-id="200" class="text-amber-300/80">Secret:</strong> Elena had secretly drafted a legal cease-and-desist letter she planned to serve Dominic that weekend. She also found a letter in her room, apparently from Dominic, that read: <em data-id="201" class="text-cream-100/90">"It ends this weekend. All of it."</em></p>
+                            <p data-id="202"><strong data-id="203" class="text-amber-300/80">Alibi:</strong> Claims she was in her room reading from 10 PM onward. No witnesses.</p>
+                            <p data-id="204"><strong data-id="205" class="text-amber-300/80">Demeanor:</strong> Precise, guarded, hyper-observant. Rarely shows emotion but watches everyone.</p>
+                        </div>
+                    </div>
+                    <!-- Jonas Hale -->
+                    <div data-id="206" class="rounded-2xl p-6 glow-border" style="background: linear-gradient(135deg, #0d1f16 0%, #1a3a25 100%); border: 1px solid rgba(26,92,50,0.3);">
+                        <div data-id="207" class="flex items-center gap-3 mb-4">
+                            <div data-id="208" class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3);">
+                                <span data-id="209" class="text-xl">🎻</span>
+                            </div>
+                            <div data-id="210">
+                                <h4 data-id="211" class="font-display text-lg font-bold text-cream-100">Jonas Hale, <span data-id="212" class="text-cream-100/50 font-normal">45</span></h4>
+                                <p data-id="213" class="text-amber-400 text-xs font-mono tracking-wider">THE COMPOSER</p>
+                            </div>
+                        </div>
+                        <div data-id="214" class="space-y-3 text-cream-100/70 text-sm leading-relaxed">
+                            <p data-id="215"><strong data-id="216" class="text-amber-300/80">Background:</strong> Dominic's oldest friend — known each other since art school. Jonas composed scores for several documentary films Dominic directed. Recently discovered Dominic planned to include damaging personal revelations about Jonas's mental health history and a long-hidden affair in his memoir.</p>
+                            <p data-id="217"><strong data-id="218" class="text-amber-300/80">Secret:</strong> Overheard on the phone the evening of the murder saying, <em data-id="219" class="text-cream-100/90">"If he publishes it, I'll lose everything."</em> Refuses to say who he was speaking with.</p>
+                            <p data-id="220"><strong data-id="221" class="text-amber-300/80">Alibi:</strong> Claims he was in the music room playing piano until midnight. Piano was heard until approximately 11:15 PM.</p>
+                            <p data-id="222"><strong data-id="223" class="text-amber-300/80">Demeanor:</strong> Warm on the surface, but increasingly erratic. Prone to dramatic silences and deflection.</p>
+                        </div>
+                    </div>
+                    <!-- Marin Kessler -->
+                    <div data-id="224" class="rounded-2xl p-6 glow-border" style="background: linear-gradient(135deg, #0d1f16 0%, #1a3a25 100%); border: 1px solid rgba(26,92,50,0.3);">
+                        <div data-id="225" class="flex items-center gap-3 mb-4">
+                            <div data-id="226" class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3);">
+                                <span data-id="227" class="text-xl">🏡</span>
+                            </div>
+                            <div data-id="228">
+                                <h4 data-id="229" class="font-display text-lg font-bold text-cream-100">Marin Kessler, <span data-id="230" class="text-cream-100/50 font-normal">61</span></h4>
+                                <p data-id="231" class="text-amber-400 text-xs font-mono tracking-wider">THE LODGE HISTORIAN</p>
+                            </div>
+                        </div>
+                        <div data-id="232" class="space-y-3 text-cream-100/70 text-sm leading-relaxed">
+                            <p data-id="233"><strong data-id="234" class="text-amber-300/80">Background:</strong> Retired academic and local historian documenting the history of Cedar Ridge Lodge for a book project. Known to Dominic through mutual literary circles. Dominic's memoir contains a chapter implicating Marin's late husband in a decades-old financial scandal.</p>
+                            <p data-id="235"><strong data-id="236" class="text-amber-300/80">Secret:</strong> Seen entering the east corridor — which leads to the study — at approximately 11:30 PM. Claims she was looking for the kitchen. The east corridor does not lead to the kitchen.</p>
+                            <p data-id="237"><strong data-id="238" class="text-amber-300/80">Alibi:</strong> Claims she returned to her room after "a brief walk." Cannot account for 40 minutes.</p>
+                            <p data-id="239"><strong data-id="240" class="text-amber-300/80">Demeanor:</strong> Calm, grandmotherly, disarmingly pleasant. Possibly the most dangerous kind of deceiver.</p>
+                        </div>
+                    </div>
+                    <!-- Talia Rowan -->
+                    <div data-id="241" class="rounded-2xl p-6 glow-border" style="background: linear-gradient(135deg, #0d1f16 0%, #1a3a25 100%); border: 1px solid rgba(26,92,50,0.3);">
+                        <div data-id="242" class="flex items-center gap-3 mb-4">
+                            <div data-id="243" class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3);">
+                                <span data-id="244" class="text-xl">🔑</span>
+                            </div>
+                            <div data-id="245">
+                                <h4 data-id="246" class="font-display text-lg font-bold text-cream-100">Talia Rowan, <span data-id="247" class="text-cream-100/50 font-normal">34</span></h4>
+                                <p data-id="248" class="text-amber-400 text-xs font-mono tracking-wider">THE LODGE OWNER</p>
+                            </div>
+                        </div>
+                        <div data-id="249" class="space-y-3 text-cream-100/70 text-sm leading-relaxed">
+                            <p data-id="250"><strong data-id="251" class="text-amber-300/80">Background:</strong> Inherited Cedar Ridge from her mother and has been trying to keep it solvent for years. Dominic promised to feature the lodge in his memoir as a "jewel of BC's artistic heritage" — but recently threatened to write a scathing exposé instead, citing mold, structural issues, and alleged negligence.</p>
+                            <p data-id="252"><strong data-id="253" class="text-amber-300/80">Secret:</strong> Talia broke open the study door the morning the body was found — but a smudged partial handprint suggests the door may have been opened and re-locked at least once before.</p>
+                            <p data-id="254"><strong data-id="255" class="text-amber-300/80">Alibi:</strong> Claims she was doing late-night maintenance checks until 11:30 PM, then went to bed. The maintenance log is suspiciously neat.</p>
+                            <p data-id="256"><strong data-id="257" class="text-amber-300/80">Demeanor:</strong> Anxious, over-helpful, slightly too eager to assist the investigation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: EVIDENCE PACK -->
+        <section data-id="258" id="evidence" class="tab-content min-h-screen pt-20 pb-16 px-4 sm:px-6">
+            <div data-id="259" class="max-w-4xl mx-auto">
+                <div data-id="260" class="text-center mb-4">
+                    <p data-id="261" class="font-mono text-amber-500/60 text-xs tracking-[0.3em] uppercase mb-3">Tab 3</p>
+                    <h2 data-id="262" class="font-display text-3xl sm:text-4xl font-bold text-cream-100 mb-2">Cedar Ridge — Restricted Case Files</h2>
+                    <p data-id="263" class="text-cream-100/50 text-sm font-sans">Review each piece of evidence carefully. Discuss your theories.</p>
+                    <div data-id="264" class="w-16 h-px bg-amber-500/40 mx-auto mt-4"></div>
+                </div>
+
+                <div data-id="265" class="space-y-6 mt-10">
+                    <!-- Evidence 1 -->
+                    <div data-id="266" class="evidence-card rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="267" class="flex flex-wrap items-center gap-3 mb-4">
+                            <span data-id="268" class="font-mono text-xs px-2 py-1 rounded" style="background:rgba(192,57,43,0.1); color:#c0392b; border:1px solid rgba(192,57,43,0.3);">File #CR-001</span>
+                            <span data-id="269" class="stamp-evidence">EVIDENCE</span>
+                        </div>
+                        <h4 data-id="270" class="font-display text-lg font-bold mb-3" style="color:#2c1810;">Evidence Item 1 — The Locked Room</h4>
+                        <p data-id="271" class="font-mono text-sm leading-relaxed" style="color:#3d2a1a;">The study door was locked from the inside using a sliding bolt. However, the lodge's original blueprints (found in Marin's research files) reveal a narrow ventilation panel above the study's east wall — approximately 14 inches wide. An adult could not pass through it, but a long tool or arm could potentially reach the bolt. The panel cover was found slightly askew the morning of the discovery.</p>
+                    </div>
+
+                    <!-- Evidence 2 -->
+                    <div data-id="272" class="evidence-card coffee-stain rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="273" style="position:absolute; top:20px; right:40px; width:55px; height:55px; border-radius:50%; background:radial-gradient(circle, transparent 35%, rgba(139,90,43,0.06) 50%, rgba(139,90,43,0.1) 65%, transparent 75%); pointer-events:none;"></div>
+                        <div data-id="274" class="flex flex-wrap items-center gap-3 mb-4">
+                            <span data-id="275" class="font-mono text-xs px-2 py-1 rounded" style="background:rgba(192,57,43,0.1); color:#c0392b; border:1px solid rgba(192,57,43,0.3);">File #CR-002</span>
+                            <span data-id="276" class="stamp-evidence">EVIDENCE</span>
+                        </div>
+                        <h4 data-id="277" class="font-display text-lg font-bold mb-3" style="color:#2c1810;">Evidence Item 2 — The Shattered Whiskey Glass</h4>
+                        <p data-id="278" class="font-mono text-sm leading-relaxed" style="color:#3d2a1a;">A crystal whiskey glass was found shattered on the study's hardwood floor, roughly 3 feet from the body. Analysis shows two sets of fingerprints: Dominic's (expected) and one partial print, smudged beyond identification. The whiskey inside was laced with a mild sedative — not enough to kill, but enough to impair. The lodge's sedative medications (prescribed to Jonas Hale for sleep) were found short by two doses.</p>
+                    </div>
+
+                    <!-- Evidence 3 -->
+                    <div data-id="279" class="evidence-card rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="280" class="flex flex-wrap items-center gap-3 mb-4">
+                            <span data-id="281" class="font-mono text-xs px-2 py-1 rounded" style="background:rgba(192,57,43,0.1); color:#c0392b; border:1px solid rgba(192,57,43,0.3);">File #CR-003</span>
+                            <span data-id="282" class="stamp-evidence">EVIDENCE</span>
+                        </div>
+                        <h4 data-id="283" class="font-display text-lg font-bold mb-3" style="color:#2c1810;">Evidence Item 3 — The Torn Letter</h4>
+                        <p data-id="284" class="font-mono text-sm leading-relaxed mb-3" style="color:#3d2a1a;">Found in the fireplace grate, partially burned. Reconstructed text reads:</p>
+                        <blockquote data-id="285" class="pl-4 py-3 rounded-lg italic text-sm font-sans" style="background:rgba(44,24,16,0.06); border-left:3px solid rgba(192,57,43,0.4); color:#4a2a1a;">
+                            "...you cannot publish what you do not understand. I have the originals. If you proceed, I will have no choice but to go to the police about <span data-id="286" style="color:#c0392b;">[burned section]</span> — and this time I will not stay silent. Meet me at <span data-id="287" style="color:#c0392b;">[burned section]</span> at eleven. Come alone."
+                        </blockquote>
+                        <p data-id="288" class="font-mono text-sm mt-3" style="color:#3d2a1a;">The handwriting analysis is inconclusive — consistent with Elena Marrow's known samples, but also consistent with Marin Kessler's.</p>
+                    </div>
+
+                    <!-- Evidence 4 -->
+                    <div data-id="289" class="evidence-card rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="290" class="flex flex-wrap items-center gap-3 mb-4">
+                            <span data-id="291" class="font-mono text-xs px-2 py-1 rounded" style="background:rgba(192,57,43,0.1); color:#c0392b; border:1px solid rgba(192,57,43,0.3);">File #CR-004</span>
+                            <span data-id="292" class="stamp-evidence">EVIDENCE</span>
+                        </div>
+                        <h4 data-id="293" class="font-display text-lg font-bold mb-3" style="color:#2c1810;">Evidence Item 4 — The Piano Recording</h4>
+                        <p data-id="294" class="font-mono text-sm leading-relaxed" style="color:#3d2a1a;">Lodge security camera (exterior only) captured audio bleed from the music room window. Timestamp analysis shows piano music from 10:08 PM to 11:14 PM. At 11:14 PM, the music stops abruptly mid-phrase. Jonas claims he played until midnight. A 46-minute gap is unaccounted for. The camera shows the music room light turned back on at 11:58 PM.</p>
+                    </div>
+
+                    <!-- Evidence 5 -->
+                    <div data-id="295" class="evidence-card coffee-stain rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="296" style="position:absolute; bottom:15px; left:30px; width:70px; height:70px; border-radius:50%; background:radial-gradient(circle, transparent 30%, rgba(139,90,43,0.05) 45%, rgba(139,90,43,0.09) 60%, transparent 72%); pointer-events:none;"></div>
+                        <div data-id="297" class="flex flex-wrap items-center gap-3 mb-4">
+                            <span data-id="298" class="font-mono text-xs px-2 py-1 rounded" style="background:rgba(192,57,43,0.1); color:#c0392b; border:1px solid rgba(192,57,43,0.3);">File #CR-005</span>
+                            <span data-id="299" class="stamp-evidence">EVIDENCE</span>
+                        </div>
+                        <h4 data-id="300" class="font-display text-lg font-bold mb-3" style="color:#2c1810;">Evidence Item 5 — The Maintenance Log</h4>
+                        <p data-id="301" class="font-mono text-sm leading-relaxed" style="color:#3d2a1a;">Talia's handwritten maintenance log records checks at 9:00 PM, 10:00 PM, and 11:00 PM. However, forensic ink analysis suggests all three entries were written at the same time — the ink bleed and pen pressure are identical across all three timestamps. The 11:00 PM entry notes "east corridor lighting — all clear." But the east corridor motion sensor logged activity at 11:32 PM — after Talia claims she was in bed.</p>
+                    </div>
+
+                    <!-- Evidence 6 -->
+                    <div data-id="302" class="evidence-card rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="303" class="flex flex-wrap items-center gap-3 mb-4">
+                            <span data-id="304" class="font-mono text-xs px-2 py-1 rounded" style="background:rgba(192,57,43,0.1); color:#c0392b; border:1px solid rgba(192,57,43,0.3);">File #CR-006</span>
+                            <span data-id="305" class="stamp-evidence">EVIDENCE</span>
+                        </div>
+                        <h4 data-id="306" class="font-display text-lg font-bold mb-3" style="color:#2c1810;">Evidence Item 6 — Dominic's Open Laptop</h4>
+                        <p data-id="307" class="font-mono text-sm leading-relaxed mb-3" style="color:#3d2a1a;">The laptop was open on Dominic's desk, screen still lit. The final document open was Chapter 22 of his memoir, titled "The Sins of Cedar Ridge." Last edit timestamp: 11:03 PM. The final paragraph:</p>
+                        <blockquote data-id="308" class="pl-4 py-3 rounded-lg italic text-sm font-sans" style="background:rgba(44,24,16,0.06); border-left:3px solid rgba(192,57,43,0.4); color:#4a2a1a;">
+                            "She thought I'd forgotten. But I never forget. The photograph proves everything, and I intend to present it in full as Appendix C of this work. Let the reader decide who the real criminal is."
+                        </blockquote>
+                        <p data-id="309" class="font-mono text-sm mt-3" style="color:#3d2a1a;">No photograph was found anywhere in the study.</p>
+                    </div>
+
+                    <!-- Evidence 7 -->
+                    <div data-id="310" class="evidence-card rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="311" class="flex flex-wrap items-center gap-3 mb-4">
+                            <span data-id="312" class="font-mono text-xs px-2 py-1 rounded" style="background:rgba(192,57,43,0.1); color:#c0392b; border:1px solid rgba(192,57,43,0.3);">File #CR-007</span>
+                            <span data-id="313" class="stamp-evidence">EVIDENCE</span>
+                        </div>
+                        <h4 data-id="314" class="font-display text-lg font-bold mb-3" style="color:#2c1810;">Evidence Item 7 — The Missing Photograph</h4>
+                        <p data-id="315" class="font-mono text-sm leading-relaxed" style="color:#3d2a1a;">Lodge guests' rooms were searched (with consent). No photograph matching the memoir's description was found. However, Elena Marrow's luggage contained a torn photo frame — empty — with cedar sap residue on the back, suggesting it had been removed from a tree or outdoor surface. Talia reported that a framed photograph had been displayed on a cedar post near the lodge's east trail — it had been removed sometime in the past week.</p>
+                    </div>
+
+                    <!-- Evidence 8 -->
+                    <div data-id="316" class="evidence-card rounded-2xl p-6 sm:p-8 relative overflow-hidden" style="box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="317" class="flex flex-wrap items-center gap-3 mb-4">
+                            <span data-id="318" class="font-mono text-xs px-2 py-1 rounded" style="background:rgba(192,57,43,0.1); color:#c0392b; border:1px solid rgba(192,57,43,0.3);">File #CR-008</span>
+                            <span data-id="319" class="stamp-evidence">EVIDENCE</span>
+                        </div>
+                        <h4 data-id="320" class="font-display text-lg font-bold mb-3" style="color:#2c1810;">Evidence Item 8 — The Ventilation Panel Tool</h4>
+                        <p data-id="321" class="font-mono text-sm leading-relaxed" style="color:#3d2a1a;">A 36-inch fireplace poker from the lodge's east sitting room was found to have a small bent end consistent with having been used to push or pull a sliding bolt. No fingerprints — wiped clean. Marin Kessler's room is the closest room to the east sitting room.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: WITNESS SCRIPTS -->
+        <section data-id="322" id="witnesses" class="tab-content min-h-screen pt-20 pb-16 px-4 sm:px-6">
+            <div data-id="323" class="max-w-4xl mx-auto">
+                <div data-id="324" class="text-center mb-4">
+                    <p data-id="325" class="font-mono text-amber-500/60 text-xs tracking-[0.3em] uppercase mb-3">Tab 4</p>
+                    <h2 data-id="326" class="font-display text-3xl sm:text-4xl font-bold text-cream-100 mb-2">Witness Interviews</h2>
+                    <p data-id="327" class="text-cream-100/50 text-sm font-sans">One of you plays Detective. The other reads the witness role. Switch for each interview.</p>
+                    <div data-id="328" class="w-16 h-px bg-amber-500/40 mx-auto mt-4"></div>
+                </div>
+
+                <!-- Instructions -->
+                <div data-id="329" class="rounded-xl p-4 sm:p-5 mb-8" style="background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.15);">
+                    <p data-id="330" class="text-cream-100/70 text-sm flex items-start gap-2">
+                        <i data-id="331" data-lucide="info" class="w-4 h-4 text-amber-500 mt-0.5 shrink-0"></i>
+                        <span data-id="332">Read these aloud, in character. The witness can only answer what's written — but can add nervous hesitation, sighs, or dramatic pauses for atmosphere!</span>
+                    </p>
+                </div>
+
+                <div data-id="333" class="space-y-8">
+                    <!-- Interview 1: Elena -->
+                    <div data-id="334" class="transcript-card rounded-2xl p-6 sm:p-8">
+                        <div data-id="335" class="flex items-center gap-3 mb-6">
+                            <span data-id="336" class="text-2xl">🕵️</span>
+                            <div data-id="337">
+                                <h4 data-id="338" class="font-display text-lg font-bold text-cream-100">Interview 1: Elena Marrow</h4>
+                                <p data-id="339" class="font-mono text-xs text-amber-500/60 tracking-wider">CEDAR RIDGE INVESTIGATION — WITNESS TRANSCRIPT</p>
+                            </div>
+                        </div>
+                        <div data-id="340" class="space-y-5">
+                            <div data-id="341"><p data-id="342" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="343" class="text-cream-100/90 text-sm">Ms. Marrow, how would you describe your relationship with Dominic Frey?</p></div>
+                            <div data-id="344"><p data-id="345" class="font-sans text-sm font-bold text-amber-400 mb-1">ELENA:</p><p data-id="346" class="text-cream-100/70 text-sm italic"><span data-id="347" class="text-cream-100/40">[long pause]</span> Professional. Once. Then complicated. Then over. I came here to end things cleanly — legally. I did not come here to end him.</p></div>
+                            <div data-id="348"><p data-id="349" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="350" class="text-cream-100/90 text-sm">We found a letter in your luggage mentioning "the originals." What originals?</p></div>
+                            <div data-id="351"><p data-id="352" class="font-sans text-sm font-bold text-amber-400 mb-1">ELENA:</p><p data-id="353" class="text-cream-100/70 text-sm italic"><span data-id="354" class="text-cream-100/40">[stiffens]</span> Research. Field notes. Dominic built his reputation on work that was half mine. I wanted them back, or at least acknowledged. That's not a motive. That's justice.</p></div>
+                            <div data-id="355"><p data-id="356" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="357" class="text-cream-100/90 text-sm">Where were you between 11 PM and midnight?</p></div>
+                            <div data-id="358"><p data-id="359" class="font-sans text-sm font-bold text-amber-400 mb-1">ELENA:</p><p data-id="360" class="text-cream-100/70 text-sm italic">In my room. Alone. Reading. I know how that sounds.</p></div>
+                            <div data-id="361"><p data-id="362" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="363" class="text-cream-100/90 text-sm">Did you write a letter to Dominic asking him to meet you that night?</p></div>
+                            <div data-id="364"><p data-id="365" class="font-sans text-sm font-bold text-amber-400 mb-1">ELENA:</p><p data-id="366" class="text-cream-100/70 text-sm italic"><span data-id="367" class="text-cream-100/40">[very still]</span> No. But I think someone wanted it to look like I did.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Interview 2: Jonas -->
+                    <div data-id="368" class="transcript-card rounded-2xl p-6 sm:p-8">
+                        <div data-id="369" class="flex items-center gap-3 mb-6">
+                            <span data-id="370" class="text-2xl">🎻</span>
+                            <div data-id="371">
+                                <h4 data-id="372" class="font-display text-lg font-bold text-cream-100">Interview 2: Jonas Hale</h4>
+                                <p data-id="373" class="font-mono text-xs text-amber-500/60 tracking-wider">CEDAR RIDGE INVESTIGATION — WITNESS TRANSCRIPT</p>
+                            </div>
+                        </div>
+                        <div data-id="374" class="space-y-5">
+                            <div data-id="375"><p data-id="376" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="377" class="text-cream-100/90 text-sm">Mr. Hale, you were heard saying "if he publishes it, I'll lose everything." What did you mean?</p></div>
+                            <div data-id="378"><p data-id="379" class="font-sans text-sm font-bold text-amber-400 mb-1">JONAS:</p><p data-id="380" class="text-cream-100/70 text-sm italic"><span data-id="381" class="text-cream-100/40">[laughs softly, then stops]</span> My wife doesn't know about a period in my life I'm not proud of. Dominic was going to put it in print. In detail. With names.</p></div>
+                            <div data-id="382"><p data-id="383" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="384" class="text-cream-100/90 text-sm">The piano music in your alibi stops at 11:14 PM — nearly an hour before you claim to have stopped playing. Can you explain that?</p></div>
+                            <div data-id="385"><p data-id="386" class="font-sans text-sm font-bold text-amber-400 mb-1">JONAS:</p><p data-id="387" class="text-cream-100/70 text-sm italic"><span data-id="388" class="text-cream-100/40">[long silence]</span> I... stepped out. For air. I was emotional. Being here, knowing what Dominic planned to publish... I needed a moment.</p></div>
+                            <div data-id="389"><p data-id="390" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="391" class="text-cream-100/90 text-sm">Where did you go when you "stepped out"?</p></div>
+                            <div data-id="392"><p data-id="393" class="font-sans text-sm font-bold text-amber-400 mb-1">JONAS:</p><p data-id="394" class="text-cream-100/70 text-sm italic">The back garden. The lake path. I didn't go near the study. I swear to you.</p></div>
+                            <div data-id="395"><p data-id="396" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="397" class="text-cream-100/90 text-sm">Did you take any of your sleep medication that night?</p></div>
+                            <div data-id="398"><p data-id="399" class="font-sans text-sm font-bold text-amber-400 mb-1">JONAS:</p><p data-id="400" class="text-cream-100/70 text-sm italic"><span data-id="401" class="text-cream-100/40">[quietly]</span> One. I took one. I only have one left, not two missing. Someone must have taken the other.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Interview 3: Marin -->
+                    <div data-id="402" class="transcript-card rounded-2xl p-6 sm:p-8">
+                        <div data-id="403" class="flex items-center gap-3 mb-6">
+                            <span data-id="404" class="text-2xl">🏡</span>
+                            <div data-id="405">
+                                <h4 data-id="406" class="font-display text-lg font-bold text-cream-100">Interview 3: Marin Kessler</h4>
+                                <p data-id="407" class="font-mono text-xs text-amber-500/60 tracking-wider">CEDAR RIDGE INVESTIGATION — WITNESS TRANSCRIPT</p>
+                            </div>
+                        </div>
+                        <div data-id="408" class="space-y-5">
+                            <div data-id="409"><p data-id="410" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="411" class="text-cream-100/90 text-sm">Mrs. Kessler, a motion sensor places you in the east corridor at 11:32 PM. You said you were looking for the kitchen. The kitchen is in the west wing.</p></div>
+                            <div data-id="412"><p data-id="413" class="font-sans text-sm font-bold text-amber-400 mb-1">MARIN:</p><p data-id="414" class="text-cream-100/70 text-sm italic"><span data-id="415" class="text-cream-100/40">[warm smile]</span> I'm 61 and I was in an unfamiliar lodge at night without my reading glasses. I got turned around. Surely that's not criminal.</p></div>
+                            <div data-id="416"><p data-id="417" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="418" class="text-cream-100/90 text-sm">Dominic's memoir apparently implicated your late husband in a financial scandal. How did you feel about that?</p></div>
+                            <div data-id="419"><p data-id="420" class="font-sans text-sm font-bold text-amber-400 mb-1">MARIN:</p><p data-id="421" class="text-cream-100/70 text-sm italic"><span data-id="422" class="text-cream-100/40">[pause]</span> My husband was a good man who made one mistake and spent the rest of his life making it right. Dominic had no right — no right — to drag that into public discourse after Harold is gone and cannot defend himself.</p></div>
+                            <div data-id="423"><p data-id="424" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="425" class="text-cream-100/90 text-sm">Did you write a letter to Dominic that night?</p></div>
+                            <div data-id="426"><p data-id="427" class="font-sans text-sm font-bold text-amber-400 mb-1">MARIN:</p><p data-id="428" class="text-cream-100/70 text-sm italic">I did not. But I know who might have wanted someone to think I did.</p></div>
+                            <div data-id="429"><p data-id="430" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="431" class="text-cream-100/90 text-sm">Who?</p></div>
+                            <div data-id="432"><p data-id="433" class="font-sans text-sm font-bold text-amber-400 mb-1">MARIN:</p><p data-id="434" class="text-cream-100/70 text-sm italic"><span data-id="435" class="text-cream-100/40">[smiles gently]</span> That's what you're here to find out, isn't it?</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Interview 4: Talia -->
+                    <div data-id="436" class="transcript-card rounded-2xl p-6 sm:p-8">
+                        <div data-id="437" class="flex items-center gap-3 mb-6">
+                            <span data-id="438" class="text-2xl">🔑</span>
+                            <div data-id="439">
+                                <h4 data-id="440" class="font-display text-lg font-bold text-cream-100">Interview 4: Talia Rowan</h4>
+                                <p data-id="441" class="font-mono text-xs text-amber-500/60 tracking-wider">CEDAR RIDGE INVESTIGATION — WITNESS TRANSCRIPT</p>
+                            </div>
+                        </div>
+                        <div data-id="442" class="space-y-5">
+                            <div data-id="443"><p data-id="444" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="445" class="text-cream-100/90 text-sm">Ms. Rowan, your maintenance log entries appear to have been written all at once, not in real time. Can you explain?</p></div>
+                            <div data-id="446"><p data-id="447" class="font-sans text-sm font-bold text-amber-400 mb-1">TALIA:</p><p data-id="448" class="text-cream-100/70 text-sm italic"><span data-id="449" class="text-cream-100/40">[nervous laugh]</span> I... I write them up at the end of the night sometimes. From memory. I know I should be more careful but the lodge is just me, there's no staff, I —</p></div>
+                            <div data-id="450"><p data-id="451" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="452" class="text-cream-100/90 text-sm">The east corridor motion sensor logged activity at 11:32 PM. Your log says you were in bed by 11:30. Which is true?</p></div>
+                            <div data-id="453"><p data-id="454" class="font-sans text-sm font-bold text-amber-400 mb-1">TALIA:</p><p data-id="455" class="text-cream-100/70 text-sm italic"><span data-id="456" class="text-cream-100/40">[long pause]</span> I... may have done one more check. I forgot to include it.</p></div>
+                            <div data-id="457"><p data-id="458" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="459" class="text-cream-100/90 text-sm">A partial handprint near the study door suggests it may have been opened and re-locked before you broke it down. Is that possible?</p></div>
+                            <div data-id="460"><p data-id="461" class="font-sans text-sm font-bold text-amber-400 mb-1">TALIA:</p><p data-id="462" class="text-cream-100/70 text-sm italic"><span data-id="463" class="text-cream-100/40">[very quietly]</span> I don't know anything about that.</p></div>
+                            <div data-id="464"><p data-id="465" class="font-sans text-sm font-bold text-navy-200 mb-1">DETECTIVE:</p><p data-id="466" class="text-cream-100/90 text-sm">Ms. Rowan — did Dominic actually have damaging information about the lodge's structural issues? Enough to shut you down?</p></div>
+                            <div data-id="467"><p data-id="468" class="font-sans text-sm font-bold text-amber-400 mb-1">TALIA:</p><p data-id="469" class="text-cream-100/70 text-sm italic"><span data-id="470" class="text-cream-100/40">[eyes fill]</span> He had photographs. He had reports. He would have destroyed everything my mother built. Everything I've spent ten years trying to save.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: INVESTIGATION WORKSHEET -->
+        <section data-id="471" id="worksheet" class="tab-content min-h-screen pt-20 pb-16 px-4 sm:px-6">
+            <div data-id="472" class="max-w-4xl mx-auto">
+                <div data-id="473" class="text-center mb-12">
+                    <p data-id="474" class="font-mono text-amber-500/60 text-xs tracking-[0.3em] uppercase mb-3">Tab 5</p>
+                    <h2 data-id="475" class="font-display text-3xl sm:text-4xl font-bold text-cream-100 mb-2">Detective's Case Notes</h2>
+                    <p data-id="476" class="text-cream-100/50 text-sm font-sans">Work through the evidence together. Fill this in before making your final accusation.</p>
+                    <div data-id="477" class="w-16 h-px bg-amber-500/40 mx-auto mt-4"></div>
+                </div>
+
+                <div data-id="478" class="space-y-6">
+                    <!-- Timeline -->
+                    <div data-id="479" class="rounded-2xl overflow-hidden" style="box-shadow:0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="480" class="legal-pad p-6 sm:p-8 rounded-2xl" style="min-height:180px;">
+                            <h4 data-id="481" class="font-display text-lg font-bold mb-3 flex items-center gap-2" style="color:#2c1810;">🔍 Key Timeline</h4>
+                            <p data-id="482" class="text-xs mb-3" style="color:#6b5544;">Write out what you believe happened between 10 PM and midnight, step by step.</p>
+                            <textarea data-id="483" rows="5" class="w-full" placeholder="10:00 PM — ..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Evidence Connections -->
+                    <div data-id="484" class="rounded-2xl overflow-hidden" style="box-shadow:0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="485" class="legal-pad p-6 sm:p-8 rounded-2xl" style="min-height:180px;">
+                            <h4 data-id="486" class="font-display text-lg font-bold mb-3 flex items-center gap-2" style="color:#2c1810;">🧩 Evidence Connections</h4>
+                            <p data-id="487" class="text-xs mb-3" style="color:#6b5544;">Which pieces of evidence connect to which suspects? Note any contradictions.</p>
+                            <textarea data-id="488" rows="5" class="w-full" placeholder="Evidence #1 connects to..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Unanswered Questions -->
+                    <div data-id="489" class="rounded-2xl overflow-hidden" style="box-shadow:0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="490" class="legal-pad p-6 sm:p-8 rounded-2xl" style="min-height:150px;">
+                            <h4 data-id="491" class="font-display text-lg font-bold mb-3 flex items-center gap-2" style="color:#2c1810;">❓ Unanswered Questions</h4>
+                            <p data-id="492" class="text-xs mb-3" style="color:#6b5544;">What still doesn't add up? What would you want to ask?</p>
+                            <textarea data-id="493" rows="4" class="w-full" placeholder="Why did..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Locked Room Theory -->
+                    <div data-id="494" class="rounded-2xl overflow-hidden" style="box-shadow:0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="495" class="legal-pad p-6 sm:p-8 rounded-2xl" style="min-height:130px;">
+                            <h4 data-id="496" class="font-display text-lg font-bold mb-3 flex items-center gap-2" style="color:#2c1810;">🔑 The Locked Room Theory</h4>
+                            <p data-id="497" class="text-xs mb-3" style="color:#6b5544;">How do you think the killer locked the study from the inside after leaving?</p>
+                            <textarea data-id="498" rows="3" class="w-full" placeholder="The killer used..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Missing Photograph -->
+                    <div data-id="499" class="rounded-2xl overflow-hidden" style="box-shadow:0 8px 25px rgba(0,0,0,0.3);">
+                        <div data-id="500" class="legal-pad p-6 sm:p-8 rounded-2xl" style="min-height:130px;">
+                            <h4 data-id="501" class="font-display text-lg font-bold mb-3 flex items-center gap-2" style="color:#2c1810;">📸 The Missing Photograph</h4>
+                            <p data-id="502" class="text-xs mb-3" style="color:#6b5544;">What do you think the photograph showed? Who had motive to take it?</p>
+                            <textarea data-id="503" rows="3" class="w-full" placeholder="The photograph showed..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Final Accusation -->
+                    <div data-id="504" class="rounded-2xl p-6 sm:p-8 glow-border-strong" style="background: linear-gradient(135deg, #1a0a0a 0%, #2a1515 50%, #1a0a0a 100%); border: 1px solid rgba(245,158,11,0.3);">
+                        <h4 data-id="505" class="font-display text-2xl font-bold text-amber-400 mb-6 text-center">🎯 Your Accusation</h4>
+                        <div data-id="506" class="space-y-4 max-w-lg mx-auto">
+                            <div data-id="507">
+                                <label data-id="508" class="text-cream-100/70 text-sm font-semibold block mb-2">I believe the killer is:</label>
+                                <select data-id="509" id="accusation-select-h7g6" class="w-full px-4 py-3 rounded-xl text-base font-sans" style="background:#141e30; color:#fef3c7; border:1px solid rgba(245,158,11,0.3);">
+                                    <option data-id="510" value="">— Select a suspect —</option>
+                                    <option data-id="511" value="elena">Elena Marrow</option>
+                                    <option data-id="512" value="jonas">Jonas Hale</option>
+                                    <option data-id="513" value="marin">Marin Kessler</option>
+                                    <option data-id="514" value="talia">Talia Rowan</option>
+                                </select>
+                            </div>
+                            <div data-id="515">
+                                <label data-id="516" class="text-cream-100/70 text-sm font-semibold block mb-2">Their motive was:</label>
+                                <input data-id="517" type="text" id="motive-input-f5e4" class="w-full px-4 py-3 rounded-xl text-base font-sans" style="background:#141e30; color:#fef3c7; border:1px solid rgba(245,158,11,0.3);" placeholder="Describe the motive..." />
+                            </div>
+                            <div data-id="518">
+                                <label data-id="519" class="text-cream-100/70 text-sm font-semibold block mb-2">The method was:</label>
+                                <input data-id="520" type="text" id="method-input-d3c2" class="w-full px-4 py-3 rounded-xl text-base font-sans" style="background:#141e30; color:#fef3c7; border:1px solid rgba(245,158,11,0.3);" placeholder="How the murder happened..." />
+                            </div>
+                            <div data-id="521">
+                                <label data-id="522" class="text-cream-100/70 text-sm font-semibold block mb-2">The locked door was explained by:</label>
+                                <input data-id="523" type="text" id="door-input-b1a0" class="w-full px-4 py-3 rounded-xl text-base font-sans" style="background:#141e30; color:#fef3c7; border:1px solid rgba(245,158,11,0.3);" placeholder="How the door was locked..." />
+                            </div>
+                        </div>
+                        <div data-id="524" class="text-center mt-8">
+                            <button data-id="525" id="lock-accusation-btn-y9x8" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-display text-lg font-semibold transition-all duration-300" style="background: linear-gradient(135deg, #922b21 0%, #c0392b 50%, #922b21 100%); color:#fffef9; box-shadow: 0 0 25px rgba(192,57,43,0.3);">
+                                🔒 Lock In Our Accusation — Proceed to The Reveal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: ROMANTIC ADD-ONS -->
+        <section data-id="526" id="romantic" class="tab-content min-h-screen pt-20 pb-16 px-4 sm:px-6">
+            <div data-id="527" class="max-w-4xl mx-auto">
+                <div data-id="528" class="text-center mb-12">
+                    <p data-id="529" class="font-mono text-xs tracking-[0.3em] uppercase mb-3" style="color:rgba(212,145,127,0.6);">Tab 6</p>
+                    <h2 data-id="530" class="font-display text-3xl sm:text-4xl font-bold text-cream-100 mb-2">An Evening to Remember</h2>
+                    <p data-id="531" class="text-sm font-sans" style="color:rgba(212,145,127,0.7);">Because every great mystery deserves a beautiful ending.</p>
+                    <div data-id="532" class="w-16 h-px mx-auto mt-4" style="background:rgba(212,145,127,0.4);"></div>
+                </div>
+
+                <!-- Mystery Dinner Menu -->
+                <div data-id="533" class="menu-card rounded-2xl p-6 sm:p-8 mb-8 romantic-glow">
+                    <h3 data-id="534" class="font-display text-xl sm:text-2xl font-semibold mb-6 text-center" style="color:#e8b4a8;">🍷 The Mystery Dinner Menu</h3>
+                    <div data-id="535" class="space-y-5 max-w-lg mx-auto">
+                        <div data-id="536" class="flex gap-4"><span data-id="537" class="font-display text-sm font-semibold shrink-0 w-16 text-right" style="color:#d4917f;">Starter</span><p data-id="538" class="text-cream-100/70 text-sm">Charcuterie board with aged cheddar, fig jam, rosemary crackers, and grapes</p></div>
+                        <div data-id="539" class="w-full h-px" style="background:rgba(212,145,127,0.1);"></div>
+                        <div data-id="540" class="flex gap-4"><span data-id="541" class="font-display text-sm font-semibold shrink-0 w-16 text-right" style="color:#d4917f;">Main</span><p data-id="542" class="text-cream-100/70 text-sm">One-pot mushroom risotto (cozy and low-effort) <em data-id="543" class="text-cream-100/40">or</em> order in your favourite local comfort food</p></div>
+                        <div data-id="544" class="w-full h-px" style="background:rgba(212,145,127,0.1);"></div>
+                        <div data-id="545" class="flex gap-4"><span data-id="546" class="font-display text-sm font-semibold shrink-0 w-16 text-right" style="color:#d4917f;">Dessert</span><p data-id="547" class="text-cream-100/70 text-sm">Dark chocolate fondue with strawberries and shortbread</p></div>
+                        <div data-id="548" class="w-full h-px" style="background:rgba(212,145,127,0.1);"></div>
+                        <div data-id="549" class="flex gap-4"><span data-id="550" class="font-display text-sm font-semibold shrink-0 w-16 text-right" style="color:#d4917f;">Drinks</span><p data-id="551" class="text-cream-100/70 text-sm">A bottle of red wine, mulled cider, or hot cocoa with Baileys</p></div>
+                        <div data-id="552" class="w-full h-px" style="background:rgba(212,145,127,0.1);"></div>
+                        <div data-id="553" class="rounded-xl p-4 mt-4" style="background:rgba(212,145,127,0.06); border:1px solid rgba(212,145,127,0.12);">
+                            <p data-id="554" class="text-cream-100/60 text-sm italic">🌧️ <strong data-id="555" class="text-cream-100/80">Shawnigan Lake special:</strong> If it's raining (it often is!), open a window slightly and listen to the rain while you eat.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ambiance Guide -->
+                <div data-id="556" class="rounded-2xl p-6 sm:p-8 mb-8" style="background: linear-gradient(135deg, #141e30 0%, #1a2740 100%); border:1px solid rgba(212,145,127,0.12);">
+                    <h3 data-id="557" class="font-display text-xl sm:text-2xl font-semibold mb-6" style="color:#e8b4a8;">🕯️ Ambiance Guide</h3>
+                    <div data-id="558" class="grid sm:grid-cols-2 gap-4">
+                        <div data-id="559" class="rounded-xl p-4" style="background:rgba(212,145,127,0.04);">
+                            <p data-id="560" class="font-semibold text-cream-100 text-sm mb-1">Lighting</p>
+                            <p data-id="561" class="text-cream-100/60 text-sm">Candles + fairy lights only — no overhead lighting during the mystery</p>
+                        </div>
+                        <div data-id="562" class="rounded-xl p-4" style="background:rgba(212,145,127,0.04);">
+                            <p data-id="563" class="font-semibold text-cream-100 text-sm mb-1">Scent</p>
+                            <p data-id="564" class="text-cream-100/60 text-sm">A cedar or pine candle to capture that Pacific Northwest lodge feeling</p>
+                        </div>
+                        <div data-id="565" class="rounded-xl p-4" style="background:rgba(212,145,127,0.04);">
+                            <p data-id="566" class="font-semibold text-cream-100 text-sm mb-1">Temperature</p>
+                            <p data-id="567" class="text-cream-100/60 text-sm">Slightly cool — an excuse for a shared blanket</p>
+                        </div>
+                        <div data-id="568" class="rounded-xl p-4" style="background:rgba(212,145,127,0.04);">
+                            <p data-id="569" class="font-semibold text-cream-100 text-sm mb-1">Music Progression</p>
+                            <p data-id="570" class="text-cream-100/60 text-sm">Dark academia piano → slow jazz at the reveal → romantic acoustic for the add-ons</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Love Note Challenge -->
+                <div data-id="571" class="rounded-2xl p-6 sm:p-8 mb-8 romantic-glow" style="background: linear-gradient(135deg, #2a1520 0%, #1a0a15 100%); border:1px solid rgba(212,145,127,0.2);">
+                    <h3 data-id="572" class="font-display text-xl sm:text-2xl font-semibold mb-4 text-center" style="color:#e8b4a8;">💌 Love Note Challenge</h3>
+                    <p data-id="573" class="text-cream-100/70 text-sm text-center max-w-lg mx-auto leading-relaxed">During the investigation, secretly write one thing you love or admire about your partner on a slip of paper. At the end of the night, exchange them. No peeking until the mystery is solved.</p>
+                </div>
+
+                <!-- Detective Awards -->
+                <div data-id="574" class="grid sm:grid-cols-2 gap-6 mb-8">
+                    <div data-id="575" class="certificate rounded-2xl p-6 text-center">
+                        <p data-id="576" class="text-xs uppercase tracking-[0.3em] mb-2" style="color:#92400e;">Certificate of Achievement</p>
+                        <p data-id="577" class="text-3xl mb-2">🥇</p>
+                        <h4 data-id="578" class="font-display text-xl font-bold mb-3" style="color:#78350f;">Master Detective</h4>
+                        <div data-id="579" class="w-12 h-px mx-auto mb-3" style="background:#b8860b;"></div>
+                        <p data-id="580" class="text-sm mb-1" style="color:#6b5544;">Awarded to:</p>
+                        <p data-id="581" class="font-display text-lg font-semibold mb-4" style="color:#78350f; border-bottom:1px dashed #b8860b; display:inline-block; min-width:150px;">________________</p>
+                        <p data-id="582" class="text-xs italic" style="color:#92400e;">Cedar Ridge Investigation, October 2026</p>
+                    </div>
+                    <div data-id="583" class="certificate rounded-2xl p-6 text-center">
+                        <p data-id="584" class="text-xs uppercase tracking-[0.3em] mb-2" style="color:#92400e;">Certificate of Achievement</p>
+                        <p data-id="585" class="text-3xl mb-2">🎭</p>
+                        <h4 data-id="586" class="font-display text-xl font-bold mb-3" style="color:#78350f;">Most Dramatic Interrogator</h4>
+                        <div data-id="587" class="w-12 h-px mx-auto mb-3" style="background:#b8860b;"></div>
+                        <p data-id="588" class="text-sm mb-1" style="color:#6b5544;">Awarded to:</p>
+                        <p data-id="589" class="font-display text-lg font-semibold mb-4" style="color:#78350f; border-bottom:1px dashed #b8860b; display:inline-block; min-width:150px;">________________</p>
+                        <p data-id="590" class="text-xs italic" style="color:#92400e;">Cedar Ridge Investigation, October 2026</p>
+                    </div>
+                </div>
+
+                <!-- Mystery Photo Booth -->
+                <div data-id="591" class="rounded-2xl p-6 sm:p-8 mb-8" style="background: linear-gradient(135deg, #141e30 0%, #1a2740 100%); border:1px solid rgba(212,145,127,0.12);">
+                    <h3 data-id="592" class="font-display text-xl sm:text-2xl font-semibold mb-5" style="color:#e8b4a8;">📸 Mystery Photo Booth</h3>
+                    <p data-id="593" class="text-cream-100/60 text-sm mb-4">Capture the moments. Print and add to a scrapbook or share on your couple's shared album.</p>
+                    <div data-id="594" class="space-y-3">
+                        <div data-id="595" class="flex items-start gap-3 p-3 rounded-xl" style="background:rgba(212,145,127,0.04);">
+                            <i data-id="596" data-lucide="camera" class="w-4 h-4 mt-0.5 shrink-0" style="color:#d4917f;"></i>
+                            <p data-id="597" class="text-cream-100/70 text-sm"><strong data-id="598" class="text-cream-100/90">"Studying the evidence"</strong> — lay out the printed evidence files and take a candid photo</p>
+                        </div>
+                        <div data-id="599" class="flex items-start gap-3 p-3 rounded-xl" style="background:rgba(212,145,127,0.04);">
+                            <i data-id="600" data-lucide="camera" class="w-4 h-4 mt-0.5 shrink-0" style="color:#d4917f;"></i>
+                            <p data-id="601" class="text-cream-100/70 text-sm"><strong data-id="602" class="text-cream-100/90">"The accusation moment"</strong> — capture the reveal reaction</p>
+                        </div>
+                        <div data-id="603" class="flex items-start gap-3 p-3 rounded-xl" style="background:rgba(212,145,127,0.04);">
+                            <i data-id="604" data-lucide="camera" class="w-4 h-4 mt-0.5 shrink-0" style="color:#d4917f;"></i>
+                            <p data-id="605" class="text-cream-100/70 text-sm"><strong data-id="606" class="text-cream-100/90">"Post-mystery glow"</strong> — cozy with your drinks at the end</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Midnight Treasure Hunt -->
+                <div data-id="607" class="rounded-2xl p-6 sm:p-8" style="background: linear-gradient(135deg, #0d1f16 0%, #1a3a25 100%); border:1px solid rgba(26,92,50,0.3);">
+                    <h3 data-id="608" class="font-display text-xl sm:text-2xl font-semibold mb-2" style="color:#e8b4a8;">🌙 Midnight Bonus Challenge</h3>
+                    <p data-id="609" class="text-cream-100/40 text-xs font-mono tracking-wider mb-5">IF YOU'RE STILL UP</p>
+                    <p data-id="610" class="text-cream-100/60 text-sm mb-5">A mini treasure hunt around the house. Hide a small treat or handwritten love note at the final location. Set up the clue chain before the evening begins!</p>
+                    <div data-id="611" class="space-y-3">
+                        <div data-id="612" class="treasure-clue rounded-xl p-4">
+                            <p data-id="613" class="text-xs font-mono mb-1" style="color:#d4917f;">CLUE 1 (Start here)</p>
+                            <p data-id="614" class="text-cream-100/80 text-sm italic font-display">"The next clue hides where the day begins and the night unwinds."</p>
+                            <p data-id="615" class="text-cream-100/40 text-xs mt-1">→ Bathroom</p>
+                        </div>
+                        <div data-id="616" class="treasure-clue rounded-xl p-4">
+                            <p data-id="617" class="text-xs font-mono mb-1" style="color:#d4917f;">CLUE 2</p>
+                            <p data-id="618" class="text-cream-100/80 text-sm italic font-display">"Seek the place where stories live and worlds are born on shelves."</p>
+                            <p data-id="619" class="text-cream-100/40 text-xs mt-1">→ Bookshelf</p>
+                        </div>
+                        <div data-id="620" class="treasure-clue rounded-xl p-4">
+                            <p data-id="621" class="text-xs font-mono mb-1" style="color:#d4917f;">CLUE 3</p>
+                            <p data-id="622" class="text-cream-100/80 text-sm italic font-display">"I keep things cold but my heart is warm — open me and look beneath the charm."</p>
+                            <p data-id="623" class="text-cream-100/40 text-xs mt-1">→ Fridge (under a magnet or inside a container)</p>
+                        </div>
+                        <div data-id="624" class="treasure-clue rounded-xl p-4">
+                            <p data-id="625" class="text-xs font-mono mb-1" style="color:#d4917f;">CLUE 4</p>
+                            <p data-id="626" class="text-cream-100/80 text-sm italic font-display">"Where you rest your head and dream of me — the truth is hidden close, you'll see."</p>
+                            <p data-id="627" class="text-cream-100/40 text-xs mt-1">→ Under their pillow</p>
+                        </div>
+                        <div data-id="628" class="treasure-clue rounded-xl p-4">
+                            <p data-id="629" class="text-xs font-mono mb-1" style="color:#d4917f;">CLUE 5</p>
+                            <p data-id="630" class="text-cream-100/80 text-sm italic font-display">"Look where we stood tonight, side by side — your final prize is waiting just inside."</p>
+                            <p data-id="631" class="text-cream-100/40 text-xs mt-1">→ The coat closet or front entryway (where you arrived together)</p>
+                        </div>
+                        <div data-id="632" class="rounded-xl p-4 text-center" style="background:rgba(212,145,127,0.08); border:1px solid rgba(212,145,127,0.15);">
+                            <p data-id="633" class="text-sm italic" style="color:#e8b4a8;">🎁 Final treasure: A small gift, chocolate, or handwritten love note!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 7: THE REVEAL -->
+        <section data-id="634" id="reveal" class="tab-content min-h-screen pt-20 pb-16 px-4 sm:px-6">
+            <div data-id="635" class="max-w-4xl mx-auto">
+                <div data-id="636" class="text-center mb-12">
+                    <p data-id="637" class="font-mono text-amber-500/60 text-xs tracking-[0.3em] uppercase mb-3">Tab 7</p>
+                    <h2 data-id="638" class="font-display text-3xl sm:text-4xl font-bold text-cream-100 mb-2">The Truth Behind The Silent Hour</h2>
+                    <div data-id="639" class="w-16 h-px bg-amber-500/40 mx-auto mt-4"></div>
+                </div>
+
+                <!-- Sealed Envelope -->
+                <div data-id="640" id="seal-container-w1v0" class="text-center py-16">
+                    <div data-id="641" class="inline-block">
+                        <!-- Envelope -->
+                        <div data-id="642" class="rounded-2xl p-8 sm:p-12 mb-8 glow-border-strong" style="background: linear-gradient(135deg, #2a1a10 0%, #3d2a1a 50%, #2a1a10 100%); border: 2px solid rgba(245,158,11,0.3); min-width:280px;">
+                            <p data-id="643" class="font-mono text-xs tracking-[0.3em] uppercase mb-6 text-amber-500/60">CEDAR RIDGE — CLASSIFIED</p>
+                            <!-- Wax Seal -->
+                            <div data-id="644" id="wax-seal-u9t8" class="wax-seal mx-auto mb-8"></div>
+                            <button data-id="645" id="break-seal-btn-s7r6" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-display text-lg font-semibold transition-all duration-300 candle-flicker" style="background: linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #b45309 100%); color:#fffef9; box-shadow: 0 0 30px rgba(245,158,11,0.3);">
+                                🕯️ Break the Seal — Reveal the Truth
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Solution (hidden initially) -->
+                <div data-id="646" id="solution-container-q5p4" class="hidden">
+                    <!-- The Killer -->
+                    <div data-id="647" class="rounded-2xl p-6 sm:p-8 mb-8 text-center glow-border-strong fade-in" style="background: linear-gradient(135deg, #1a0a0a 0%, #3a1515 50%, #1a0a0a 100%); border:2px solid rgba(192,57,43,0.4);">
+                        <p data-id="648" class="font-mono text-xs tracking-[0.3em] uppercase mb-4" style="color:rgba(251,113,133,0.6);">THE KILLER IS</p>
+                        <h3 data-id="649" class="font-display text-3xl sm:text-4xl font-bold text-cream-100 mb-2">Talia Rowan</h3>
+                        <p data-id="650" class="text-amber-400 font-mono text-sm tracking-wider">THE LODGE OWNER</p>
+                    </div>
+
+                    <!-- The Full Truth -->
+                    <div data-id="651" class="rounded-2xl p-6 sm:p-8 mb-8 glow-border" style="background: linear-gradient(135deg, #141e30 0%, #1a2740 100%);">
+                        <h4 data-id="652" class="font-display text-xl font-bold text-amber-400 mb-5">The Full Truth</h4>
+                        <div data-id="653" class="space-y-4 text-cream-100/80 text-sm leading-relaxed">
+                            <p data-id="654">Dominic Frey did not plan to feature Cedar Ridge Lodge in his memoir — he planned to <strong data-id="655" class="text-cream-100">destroy it</strong>. He had obtained a damning structural engineer's report showing the lodge had serious safety violations that Talia had concealed from guests for years. Combined with photographs of visible mold and decay, his chapter "The Sins of Cedar Ridge" would have triggered regulatory investigation, potential lawsuits, and public outrage that would have ended the lodge forever.</p>
+                            <p data-id="656">But the final straw was personal: the photograph displayed on the cedar post on the east trail was a photo of <strong data-id="657" class="text-cream-100">Talia's mother</strong> — a photo Dominic had stolen and intended to use as the cover of the lodge exposé chapter, captioned with a mocking reference to a legacy "built on negligence." For Talia, this wasn't about money. It was about her mother's memory.</p>
+                        </div>
+                    </div>
+
+                    <!-- How She Did It -->
+                    <div data-id="658" class="rounded-2xl p-6 sm:p-8 mb-8 glow-border" style="background: linear-gradient(135deg, #0d1f16 0%, #1a3a25 100%); border: 1px solid rgba(26,92,50,0.3);">
+                        <h4 data-id="659" class="font-display text-xl font-bold text-amber-400 mb-5">How She Did It</h4>
+                        <div data-id="660" class="space-y-4 text-cream-100/80 text-sm leading-relaxed">
+                            <p data-id="661">Talia had a copy of every key at Cedar Ridge — including a master key that could operate the study's interior bolt via a thin access tool through the ventilation panel, a feature she'd always known about as the lodge owner. She <strong data-id="662" class="text-cream-100">forged a letter to appear as though it came from Elena</strong> — counting on the existing animosity between them to make Elena a plausible suspect.</p>
+                            <p data-id="663">She retrieved Jonas's sleep medication from his unlocked room earlier that day, slipped a dose into Dominic's whiskey (which she served him as the lodge host), waited for it to take partial effect, then entered the study while he was groggy. The confrontation escalated. She struck him with a <strong data-id="664" class="text-cream-100">bronze bookend</strong> — not found because she dropped it in the lodge's old well, accessed from the east trail.</p>
+                            <p data-id="665">She locked the study bolt from the outside using the <strong data-id="666" class="text-cream-100">fireplace poker through the ventilation panel</strong> — leaving it in the east sitting room (a mistake: she wiped it but forgot it entirely). She then created the false maintenance log entries to account for her movements. In the morning, she was the one who "found" the locked door and broke it down — destroying any subtle evidence of the bolt mechanism in the process.</p>
+                        </div>
+                    </div>
+
+                    <!-- Red Herrings -->
+                    <div data-id="667" class="rounded-2xl p-6 sm:p-8 mb-8 glow-border" style="background: linear-gradient(135deg, #141e30 0%, #1a2740 100%);">
+                        <h4 data-id="668" class="font-display text-xl font-bold text-amber-400 mb-5">The Red Herrings</h4>
+                        <div data-id="669" class="space-y-3 text-cream-100/80 text-sm leading-relaxed">
+                            <div data-id="670" class="flex gap-3"><span data-id="671" class="text-amber-500 shrink-0">•</span><p data-id="672"><strong data-id="673" class="text-cream-100">Elena's letter was a forgery</strong> — Talia copied her handwriting from lodge guest registration cards</p></div>
+                            <div data-id="674" class="flex gap-3"><span data-id="675" class="text-amber-500 shrink-0">•</span><p data-id="676"><strong data-id="677" class="text-cream-100">Jonas's missing piano hour was real but innocent</strong> — he walked to the lake, grief-stricken, and didn't see anything</p></div>
+                            <div data-id="678" class="flex gap-3"><span data-id="679" class="text-amber-500 shrink-0">•</span><p data-id="680"><strong data-id="681" class="text-cream-100">Marin's east corridor walk was genuine disorientation</strong> — but her calm demeanor made her suspicious</p></div>
+                        </div>
+                    </div>
+
+                    <!-- The Photograph -->
+                    <div data-id="682" class="rounded-2xl p-6 sm:p-8 mb-8" style="background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15);">
+                        <h4 data-id="683" class="font-display text-lg font-bold text-amber-400 mb-3">📸 The Photograph</h4>
+                        <p data-id="684" class="text-cream-100/80 text-sm leading-relaxed">Talia removed it from the cedar post herself, three days before the murder weekend — she couldn't bear the thought of it appearing in his book. It was found, later, tucked beneath the mattress in her room.</p>
+                    </div>
+
+                    <!-- Score Card -->
+                    <div data-id="685" class="score-card rounded-2xl p-6 sm:p-8 glow-border-strong" style="border:1px solid rgba(245,158,11,0.3);">
+                        <h4 data-id="686" class="font-display text-2xl font-bold text-amber-400 mb-6 text-center">🏆 Score Card</h4>
+                        <p data-id="687" class="text-cream-100/50 text-sm text-center mb-6">Check off what you got right. Be honest!</p>
+                        <div data-id="688" class="space-y-4 max-w-md mx-auto">
+                            <label data-id="689" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors" style="background:rgba(245,158,11,0.04);">
+                                <input data-id="690" type="checkbox" class="score-check w-5 h-5 rounded accent-amber-500" />
+                                <span data-id="691" class="text-cream-100/80 text-sm">Solved the killer? (Talia Rowan)</span>
+                            </label>
+                            <label data-id="692" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors" style="background:rgba(245,158,11,0.04);">
+                                <input data-id="693" type="checkbox" class="score-check w-5 h-5 rounded accent-amber-500" />
+                                <span data-id="694" class="text-cream-100/80 text-sm">Identified the correct motive? (Protect the lodge / mother's memory)</span>
+                            </label>
+                            <label data-id="695" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors" style="background:rgba(245,158,11,0.04);">
+                                <input data-id="696" type="checkbox" class="score-check w-5 h-5 rounded accent-amber-500" />
+                                <span data-id="697" class="text-cream-100/80 text-sm">Explained the locked room correctly? (Fireplace poker + ventilation panel)</span>
+                            </label>
+                            <label data-id="698" class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors" style="background:rgba(245,158,11,0.04);">
+                                <input data-id="699" type="checkbox" class="score-check w-5 h-5 rounded accent-amber-500" />
+                                <span data-id="700" class="text-cream-100/80 text-sm">Named the forged letter target? (Elena Marrow)</span>
+                            </label>
+                        </div>
+                        <div data-id="701" id="score-result-o3n2" class="text-center mt-8 p-6 rounded-xl" style="background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.15);">
+                            <p data-id="702" class="font-display text-xl font-bold text-amber-400 mb-2" id="score-count-m1l0">0 / 4</p>
+                            <p data-id="703" class="text-cream-100/70 text-sm" id="score-message-k9j8">Check off your correct answers above!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer data-id="704" class="no-print py-8 mt-auto text-center border-t border-amber-500/10">
+        <p data-id="705" class="text-xs text-cream-100/30 mb-1">The Silent Hour at Cedar Ridge — A Murder Mystery Date Night</p>
+        <p data-id="706" class="text-xs text-cream-100/20">Made by Copilot</p>
+    </footer>
+
+    <script>
+    // Guard Lucide icons
+    if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
+        lucide.createIcons();
+    }
+
+    // ===== TAB NAVIGATION =====
+    const tabs = document.querySelectorAll('.nav-tab');
+    const mobileTabs = document.querySelectorAll('.mobile-nav-tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const mobileMenu = document.getElementById('mobile-menu-v7u6');
+
+    function switchTab(tabId) {
+        // Update desktop nav
+        tabs.forEach(t => {
+            t.classList.remove('active');
+            t.style.color = '';
+            if (t.dataset.tab === tabId) {
+                t.classList.add('active');
+            }
+        });
+        // Update content
+        tabContents.forEach(tc => {
+            tc.classList.remove('active');
+            if (tc.id === tabId) {
+                tc.classList.add('active');
+                // Fade in animation
+                tc.style.opacity = '0';
+                tc.style.transform = 'translateY(10px)';
+                requestAnimationFrame(() => {
+                    tc.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    tc.style.opacity = '1';
+                    tc.style.transform = 'translateY(0)';
+                });
+            }
+        });
+        // Close mobile menu
+        mobileMenu.classList.add('hidden');
+        // Scroll to top of section
+        window.scrollTo({ top: document.getElementById('main-nav-a1b2').offsetHeight, behavior: 'smooth' });
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+    });
+    mobileTabs.forEach(tab => {
+        tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+    });
+
+    // ===== MOBILE MENU =====
+    document.getElementById('mobile-menu-open-z9w8').addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+    });
+    document.getElementById('mobile-menu-close-t5s4').addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+    });
+
+    // ===== BEGIN THE EVENING BUTTON =====
+    document.getElementById('begin-btn-p5o6').addEventListener('click', () => {
+        switchTab('host-guide');
+        document.getElementById('hero-section-k1j2').style.display = 'none';
+    });
+
+    // ===== PRINT BUTTON =====
+    function handlePrint() {
+        const activeTab = document.querySelector('.tab-content.active');
+        if (activeTab) {
+            activeTab.classList.add('print-active');
+        }
+        window.print();
+        setTimeout(() => {
+            if (activeTab) activeTab.classList.remove('print-active');
+        }, 1000);
+    }
+    document.getElementById('print-btn-x3y4').addEventListener('click', handlePrint);
+    const mobilePrintBtn = document.getElementById('mobile-print-btn-r3q2');
+    if (mobilePrintBtn) {
+        mobilePrintBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            setTimeout(handlePrint, 300);
+        });
+    }
+
+    // ===== RAIN EFFECT =====
+    const rainContainer = document.getElementById('rain-container-m3n4');
+    if (rainContainer) {
+        for (let i = 0; i < 40; i++) {
+            const line = document.createElement('div');
+            line.className = 'rain-line';
+            line.style.left = Math.random() * 100 + '%';
+            line.style.height = (Math.random() * 80 + 40) + 'px';
+            line.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+            line.style.animationDelay = Math.random() * 3 + 's';
+            line.style.opacity = (Math.random() * 0.3 + 0.1).toString();
+            rainContainer.appendChild(line);
+        }
+    }
+
+    // ===== LOCK ACCUSATION BUTTON =====
+    document.getElementById('lock-accusation-btn-y9x8').addEventListener('click', () => {
+        const select = document.getElementById('accusation-select-h7g6');
+        if (!select.value) {
+            select.style.borderColor = 'rgba(251,113,133,0.6)';
+            select.focus();
+            setTimeout(() => { select.style.borderColor = 'rgba(245,158,11,0.3)'; }, 2000);
+            return;
+        }
+        // Dramatic flash
+        const btn = document.getElementById('lock-accusation-btn-y9x8');
+        btn.textContent = '🔏 Case Sealed';
+        btn.style.background = 'linear-gradient(135deg, #14532d 0%, #166534 50%, #14532d 100%)';
+        btn.style.pointerEvents = 'none';
+        // Switch to reveal tab
+        setTimeout(() => {
+            switchTab('reveal');
+        }, 1200);
+    });
+
+    // ===== BREAK THE SEAL =====
+    document.getElementById('break-seal-btn-s7r6').addEventListener('click', () => {
+        const seal = document.getElementById('wax-seal-u9t8');
+        seal.classList.add('broken');
+        setTimeout(() => {
+            document.getElementById('seal-container-w1v0').style.display = 'none';
+            const solution = document.getElementById('solution-container-q5p4');
+            solution.classList.remove('hidden');
+            solution.style.opacity = '0';
+            requestAnimationFrame(() => {
+                solution.style.transition = 'opacity 1.2s ease';
+                solution.style.opacity = '1';
+            });
+        }, 900);
+    });
+
+    // ===== SCORE CARD =====
+    const scoreChecks = document.querySelectorAll('.score-check');
+    const scoreMessages = {
+        4: "🏆 Cedar Ridge's Finest Detectives — Dominic would be impressed (and terrified)",
+        3: "🥈 Sharp minds — you nearly had her",
+        2: "🔍 Good instincts, but the lodge owner fooled you",
+        1: "🎭 Talia wins this round. Don't quit your day jobs.",
+        0: "🎭 Talia wins this round. Don't quit your day jobs."
+    };
+    scoreChecks.forEach(check => {
+        check.addEventListener('change', () => {
+            let count = 0;
+            scoreChecks.forEach(c => { if (c.checked) count++; });
+            document.getElementById('score-count-m1l0').textContent = count + ' / 4';
+            document.getElementById('score-message-k9j8').textContent = scoreMessages[count];
+        });
+    });
+    </script>
+
+<script>
+(function(){
+  var PRODUCT_ID = "VDmGAEz5R-IoeBiMKPEKOw==";
+  var gate = document.getElementById('pack-gate');
+  var form = document.getElementById('pack-gate-form');
+  var input = document.getElementById('pack-code');
+  var error = document.getElementById('pack-gate-error');
+  if (!gate || !form) return;
+  document.body.classList.add('pack-gated');
+  function unlock(){
+    gate.remove();
+    document.body.classList.remove('pack-gated');
+    try { sessionStorage.setItem('sherman-pack1-unlocked', '1'); } catch(e) {}
+  }
+  try {
+    if (sessionStorage.getItem('sherman-pack1-unlocked') === '1') { unlock(); return; }
+  } catch(e) {}
+  async function verify(code){
+    error.textContent = 'Checking your code…';
+    var body = new URLSearchParams();
+    body.append('product_id', PRODUCT_ID);
+    body.append('license_key', code);
+    body.append('increment_uses_count', 'false');
+    var res = await fetch('https://api.gumroad.com/v2/licenses/verify', { method: 'POST', body: body });
+    var data = await res.json();
+    if (!data || !data.success) { throw new Error('invalid'); }
+    var p = data.purchase || {};
+    if (p.refunded || p.chargebacked || p.disputed) { throw new Error('invalid'); }
+    return true;
+  }
+  form.addEventListener('submit', async function(ev){
+    ev.preventDefault();
+    var code = (input.value || '').trim();
+    if (!code) { error.textContent = 'Please enter your access code.'; return; }
+    try {
+      await verify(code);
+      unlock();
+    } catch(e) {
+      error.textContent = 'That code did not verify for Pack 1. Please check it and try again.';
+    }
+  });
+  var params = new URLSearchParams(window.location.search);
+  var preset = params.get('code');
+  if (preset) { input.value = preset; form.dispatchEvent(new Event('submit')); }
+})();
+</script>
+</body>
+</html>
